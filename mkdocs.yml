@@ -1,0 +1,36 @@
+site_name: RUNE Framework
+site_url: https://rune.entropy.quest
+repo_url: https://github.com/UglyEgg/RUNE
+edit_uri: edit/main/docs/
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - content.code.copy
+    - content.code.annotate
+    - content.code.mermaid
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.tabbed
+  - pymdownx.snippets
+nav:
+  - Home: index.md
+  - Protocols:
+      - Runtime Communication (RCS): protocol_runtime.md
+      - Module Registration (MRS): protocol_module.md
+      - Error Protocol (EPS): protocol_error.md
+  - Development:
+      - Plugin Guide: plugin_development_guide.md
+      - System Architecture: system_architecture.md
+      - Security Model: security_model.md
+      - Testing Guide: testing_guide.md
+      - API Reference: api_reference.md
+      - Glossary: glossary_of_terms.md
+  - Roadmap: roadmap.md
+  - Contributing: contributing.md
+  - Legal:
+      - Contributer License Agreement: CLA.md
+      - License (MPL-2.0): LICENSE.md
+      - Notice: NOTICE.md
+      - Patents: PATENTS.md

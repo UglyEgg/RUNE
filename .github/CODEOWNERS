@@ -1,0 +1,31 @@
+# GitHub CODEOWNERS for RUNE
+
+# Default: all files require review by repo owner
+
+* @UglyEgg
+
+# Docs
+
+/docs/ @UglyEgg
+
+# Protocol specs
+
+/docs/protocol_*.md @UglyEgg
+
+# Core orchestration and mediation code
+
+/rune_cli.py @UglyEgg
+/orchestrator.py @UglyEgg
+/mediator.py @UglyEgg
+
+# Plugins
+
+/plugins/ @UglyEgg
+
+# Configuration files
+
+mkdocs.yml @UglyEgg
+LICENSE @UglyEgg
+NOTICE.md @UglyEgg
+PATENTS.md @UglyEgg
+CLA.md @UglyEgg

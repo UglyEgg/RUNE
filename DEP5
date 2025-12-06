@@ -1,0 +1,24 @@
+Format: [https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/](https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/)
+Upstream-Name: RUNE
+Upstream-Contact: Richard Majewski [uglyegg@users.noreply.github.com](mailto:uglyegg@users.noreply.github.com)
+Source: [https://github.com/UglyEgg/RUNE](https://github.com/UglyEgg/RUNE)
+
+Files: *
+Copyright: 2025 Richard Majewski
+License: MPL-2.0
+
+Files: docs/protocol_*.md
+Copyright: 2025 Richard Majewski
+License: MPL-2.0
+
+Files: RUNE_cli.py orchestrator.py mediator.py
+Copyright: 2025 Richard Majewski
+License: MPL-2.0
+
+Files: plugins/*
+Copyright: 2025 Richard Majewski
+License: MPL-2.0
+
+License: MPL-2.0
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, you can obtain one at [https://mozilla.org/MPL/2.0/](https://mozilla.org/MPL/2.0/)
