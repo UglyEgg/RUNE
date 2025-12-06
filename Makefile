@@ -33,19 +33,19 @@ TEMPLATE_SKIP_info := 1
 
 .PHONY: sync sync-dev build publish publish-test serve-docs mkdocs-deploy bump-version dev-setup quick-check release-check info update-deps lock ci-install ci-test ci-check show-outdated tree clean format lint test check
 
-install:
+install: ## Install package in editable mode with uv
 	uv pip install -e .
 
-install-dev:
+install-dev: ## Install development dependencies with uv
 	uv sync --extra dev
 
-sync:
+sync: ## Sync project dependencies with uv
 	uv sync
 
-sync-dev:
+sync-dev: ## Sync development dependencies with uv
 	uv sync --extra dev
 
-bump-version:
+bump-version: ## Bump project version
 	@if [ -n "$(version)" ]; then \
 		uv run --extra dev python scripts/bump_version.py --set $(version); \
 	else \
@@ -53,16 +53,16 @@ bump-version:
 	fi
 	@uv run --extra dev hatch version
 
-build: clean
+build: clean ## Build distribution artifacts
 	./scripts/build.sh
 
-publish-test:
+publish-test: ## Publish package to TestPyPI
 	./scripts/release.sh --repository testpypi
 
-publish:
+publish: ## Publish package to PyPI
 	./scripts/release.sh
 
-info:
+info: ## Show Python, uv, and project info
 	@echo "Python version:"
 	@$(PYTHON) --version
 	@if command -v uv >/dev/null 2>&1; then \
@@ -80,72 +80,72 @@ info:
 	@echo "Project info:"
 	@PYTHONPATH=src $(PYTHON) -c "import importlib.util; spec = importlib.util.find_spec('rune'); print(f'rune module: {spec.origin}' if spec and spec.origin else 'rune not installed')"
 
-dev-setup: install-dev pre-commit-install
+dev-setup: install-dev pre-commit-install ## Set up full development environment
 	@echo "Development environment is ready!"
 	@echo "Run 'make help' to see available commands"
 
-quick-check: format lint test
+quick-check: format lint test ## Run format, lint, and tests
 
-release-check: clean check build
+release-check: clean check build ## Run full check and build before release
 
-update-deps:
+update-deps: ## Upgrade dependencies and update lockfile
 	uv sync --upgrade
 
-lock:
+lock: ## Generate or refresh uv lockfile
 	uv lock
 
-ci-install:
+ci-install: ## Install dependencies in CI (frozen)
 	uv sync --frozen
 
-ci-test:
+ci-test: ## Run test suite with coverage in CI
 	uv run pytest --cov=src --cov-report=xml
 
-ci-check:
+ci-check: ## Run lint, typecheck, and tests in CI
 	uv run black --check src tests
 	uv run isort --check-only src tests
 	uv run ruff check src tests
 	uv run mypy src
 	uv run pytest --cov=src --cov-report=xml
 
-show-outdated:
+show-outdated: ## List outdated dependencies
 	uv pip list --outdated
 
-tree:
+tree: ## Show project tree
 	tree -I '__pycache__|*.pyc|*.pyo|.git|.pytest_cache|.mypy_cache|*.egg-info|build|dist|.venv|.uv'
 
-serve-docs:
+serve-docs: ## Serve documentation locally
 	$(MKDOCS) serve
 
-mkdocs-deploy:
+mkdocs-deploy: ## Build and deploy documentation with MkDocs
 	$(MKDOCS) gh-deploy --clean
 
-pre-commit-install:
+pre-commit-install: ## Install pre-commit hooks
 	uv run pre-commit install
 
-pre-commit-run:
+pre-commit-run: ## Run all pre-commit hooks
 	uv run pre-commit run --all-files
 
-format:
+format: ## Format code with black and isort
 	$(RUN_DEV) $(BLACK) $(BLACK_ARGS) $(FORMAT_PATHS)
 	$(RUN_DEV) $(ISORT) $(ISORT_ARGS) $(FORMAT_PATHS)
 
-lint:
+lint: ## Run static analysis (ruff/black/isort)
 	$(RUN_DEV) $(RUFF) $(RUFF_ARGS) $(LINT_PATHS)
 	$(RUN_DEV) $(BLACK) $(BLACK_LINT_ARGS) $(FORMAT_PATHS)
 	$(RUN_DEV) $(ISORT) $(ISORT_LINT_ARGS) $(FORMAT_PATHS)
 
-typecheck:
+typecheck: ## Run mypy type checking
 	$(RUN_DEV) $(MYPY) $(TYPECHECK_PATHS)
 
-test:
+test: ## Run tests with coverage
 	$(RUN_DEV) pytest $(PYTEST_COV_ARGS)
 
-test-fast:
+test-fast: ## Run tests without coverage
 	$(RUN_DEV) pytest
 
-check: lint typecheck test
+check: lint typecheck test ## Run lint, typecheck, and tests
 
-clean:
+clean: ## Remove build artifacts and caches
 	@echo "Cleaning build artifacts..."
 	@find . -name "*.pyc" -delete
 	@find . -name "*.pyo" -delete
@@ -156,19 +156,20 @@ clean:
 	@find . -name "*.so" -type f -delete
 	@rm -rf build/
 	@rm -rf dist/
-	@rm -rf .coverage
 	@rm -rf htmlcov/
+	@rm -rf site/
+	@rm -rf .coverage
 	@rm -rf .pytest_cache/
 	@rm -rf .mypy_cache/
 	@rm -rf .ruff_cache/
 
-clean-all: clean
+clean-all: clean ## Remove all build artifacts, caches, and env
 	@echo "Cleaning all files..."
 	@rm -rf .venv/
 	@rm -rf .uv/
 	@rm -rf uv.lock
 	@rm -rf .uv-cache/
 
-help:
+help: ## Show this help message
 	@echo "Available commands:"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}'

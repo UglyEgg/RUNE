@@ -9,11 +9,6 @@ theme:
     - content.code.copy
     - content.code.annotate
     - content.code.mermaid
-markdown_extensions:
-  - pymdownx.superfences
-  - pymdownx.highlight
-  - pymdownx.tabbed
-  - pymdownx.snippets
 nav:
   - Home: index.md
   - Protocols:
@@ -28,9 +23,11 @@ nav:
       - API Reference: api_reference.md
       - Glossary: glossary_of_terms.md
   - Roadmap: roadmap.md
-  - Contributing: contributing.md
+  - Contributing:
+      - Getting Started: contrib/contributing.md
+      - Style Guide: contrib/STYLE_GUIDE.md
   - Legal:
-      - Contributer License Agreement: CLA.md
-      - License (MPL-2.0): LICENSE.md
-      - Notice: NOTICE.md
-      - Patents: PATENTS.md
+      - Contributer License Agreement: legal/CLA.md
+      - License (MPL-2.0): legal/LICENSE.md
+      - Notice: legal/NOTICE.md
+      - Patents: legal/PATENTS.md

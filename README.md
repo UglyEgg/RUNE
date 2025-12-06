@@ -1,5 +1,6 @@
 # RUNE - Remediation & Unified Node Executor
 
+![License: MPL-2.0]
 ![Docs](https://github.com/UglyEgg/RUNE/actions/workflows/deploy-docs.yml/badge.svg)
 
 RUNE is a modular, extensible orchestration framework designed to standardize and automate common remediation and diagnostic tasks across large Linux-based infrastructures. It enables operators, especially security and platform teams, to quickly execute predefined system actions—such as restarting services, gathering logs, or healing broken components—with a single CLI command or button press from a centralized dashboard.
@@ -76,8 +77,49 @@ RUNE’s architecture is intentionally modular and forward-thinking. While the M
 
 **Project Phase:** MVP in development  
 **Language:** Python (Core) + Bash (Plugins)  
-**Target Platform:** Linux (agentless, SSH/SSM)  
+**Target Platform:** Linux (agentless, SSH/SSM)
 **License:** MPL-2.0
+
+---
+
+## Quickstart
+
+1. Install dependencies and the CLI in editable mode:
+
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   pip install --upgrade pip
+   pip install -e .[dev]
+   ```
+
+2. Run a stubbed action against a target node (no remote execution occurs yet):
+
+   ```bash
+   rune run noop --node localhost --param example=demo --output pretty
+   ```
+
+   The command prints a JSON envelope including action, node, and the parameters you provide.
+
+3. Execute the test suite:
+
+   ```bash
+   pytest
+   ```
+
+---
+
+## Transport configuration
+
+### SSH (default)
+
+- Ensure password-less SSH access to target hosts (SSH keys are recommended).
+- The MVP uses the SSH transport stub and does not open network connections yet, but future versions will rely on your local SSH configuration (e.g., `~/.ssh/config`, agent forwarding, bastion settings).
+
+### AWS SSM (stubbed)
+
+- The SSM transport is a placeholder. When implemented it will require valid AWS credentials and instance connectivity to the SSM control plane.
+- Today, invoking SSM returns a structured "not implemented" response to preserve the command contract.
 
 ---
 

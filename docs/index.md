@@ -32,7 +32,7 @@ Explore these key documents:
 - [Runtime Communication Spec (RCS)](protocol_runtime.md)
 - [API Reference](api_reference.md)
 
-Want to help? [Contribute](contributing.md) or follow the [Roadmap](roadmap.md) to see what's next.
+Want to help? [Contribute](contrib/contributing.md) or follow the [Roadmap](roadmap.md) to see what's next.
 
 ---
 

@@ -33,7 +33,7 @@ classifiers = [
   "Topic :: System :: Systems Administration",
   "Topic :: Utilities",
 ]
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = []
 
 [project.optional-dependencies]
@@ -50,6 +50,7 @@ dev = [
   "twine>=4.0.0",
   "spdx-headers>=1.5.1",
   "mkdocs>=1.5.0",
+  "mkdocs-material>=9.7.0",
 ]
 test = ["pytest>=7.0.0", "pytest-cov>=4.0.0", "pytest-mock>=3.10.0"]
 
@@ -57,14 +58,14 @@ test = ["pytest>=7.0.0", "pytest-cov>=4.0.0", "pytest-mock>=3.10.0"]
 Homepage = "https://github.com/UglyEgg/rune"
 Repository = "https://github.com/UglyEgg/rune"
 Issues = "https://github.com/UglyEgg/rune/issues"
-Documentation = "https://rune.entropy.quest"
+Documentation = "https://uglyegg.github.io/RUNE/"
 Changelog = "https://github.com/UglyEgg/rune/blob/main/CHANGELOG.md"
 
 [project.scripts]
-rune = "src.rune_cli:main"
+rune = "rune.rune_cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src"]
+packages = ["src/rune"]
 
 [tool.black]
 line-length = 99
