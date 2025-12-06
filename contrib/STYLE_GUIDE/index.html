@@ -1,0 +1,2672 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://rune.entropy.quest/contrib/STYLE_GUIDE/">
+      
+      
+        <link rel="prev" href="../contributing/">
+      
+      
+        <link rel="next" href="../../legal/CLA/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Style Guide - RUNE Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-style-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="RUNE Framework" class="md-header__button md-logo" aria-label="RUNE Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RUNE Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Style Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/UglyEgg/RUNE" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../protocol_runtime/" class="md-tabs__link">
+          
+  
+  
+  Protocols
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../plugin_development_guide/" class="md-tabs__link">
+          
+  
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../roadmap/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Roadmap
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../contributing/" class="md-tabs__link">
+          
+  
+  
+  Contributing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../legal/CLA/" class="md-tabs__link">
+          
+  
+  
+  Legal
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="RUNE Framework" class="md-nav__button md-logo" aria-label="RUNE Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    RUNE Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/UglyEgg/RUNE" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocols
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocols
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protocol_runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime Communication (RCS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protocol_module/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Registration (MRS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protocol_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Protocol (EPS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Development
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugin_development_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../testing_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary_of_terms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Contributing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Style Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Style Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Standards
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Standards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#line-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Line Length
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-hints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type Hints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Type Hints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modern-type-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modern Type Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-hints-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type Hints Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docstrings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docstrings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docstrings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-docstrings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Docstrings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-docstrings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function Docstrings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-docstrings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class Docstrings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Imports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#naming-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Naming Conventions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Organization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Organization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function Length
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-responsibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single Responsibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modern-python-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modern Python Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modern Python Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string-formatting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String Formatting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Path Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-managers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Managers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprehensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprehensions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enums" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enums
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eafp-vs-lbyl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EAFP vs LBYL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specific-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Specific Exceptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exception Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tooling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tooling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formatter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-checker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type Checker
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Checks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Checks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#individual-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Individual Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyprojecttoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyproject.toml
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-commit Hooks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="References">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#peps-python-enhancement-proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PEPs (Python Enhancement Proposals)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/CLA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributer License Agreement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/LICENSE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License (MPL-2.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/NOTICE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/PATENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Standards
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Standards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#line-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Line Length
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-hints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type Hints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Type Hints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modern-type-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modern Type Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-hints-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type Hints Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docstrings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docstrings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docstrings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-docstrings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Docstrings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-docstrings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function Docstrings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-docstrings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class Docstrings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Imports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#naming-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Naming Conventions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Organization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Organization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function Length
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-responsibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single Responsibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modern-python-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modern Python Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modern Python Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string-formatting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String Formatting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Path Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-managers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Managers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprehensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprehensions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enums" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enums
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eafp-vs-lbyl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EAFP vs LBYL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specific-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Specific Exceptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exception Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tooling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tooling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formatter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-checker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type Checker
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Checks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Checks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#individual-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Individual Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyprojecttoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyproject.toml
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-commit Hooks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="References">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#peps-python-enhancement-proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PEPs (Python Enhancement Proposals)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="python-style-guide">Python Style Guide</h1>
+<h2 id="overview">Overview</h2>
+<p>This project follows PEP-8 with modern Python best practices and some intentional deviations documented below.</p>
+<hr />
+<h2 id="core-standards">Core Standards</h2>
+<h3 id="line-length">Line Length</h3>
+<p><strong>Maximum:</strong> 99 characters</p>
+<p><strong>Rationale:</strong></p>
+<ul>
+<li>Modern standard (black/ruff default)</li>
+<li>Better for modern displays and IDEs</li>
+<li>Balances readability with practicality</li>
+<li>Reduces unnecessary line breaks</li>
+</ul>
+<p><strong>Note:</strong> This is an intentional deviation from strict PEP-8 (79 characters) but aligns with modern Python community practices and tooling defaults.</p>
+<hr />
+<h3 id="type-hints">Type Hints</h3>
+<p><strong>Style:</strong> Python 3.10+ syntax with <code>from __future__ import annotations</code></p>
+<h4 id="modern-type-syntax">Modern Type Syntax</h4>
+<pre><code class="language-python">from __future__ import annotations
+
+# Use built-in generics (not typing.List, typing.Dict, etc.)
+def process_items(items: list[str]) -&gt; dict[str, int]:
+    &quot;&quot;&quot;Process a list of items and return counts.&quot;&quot;&quot;
+    ...
+
+# Use union operator for optional types (not typing.Optional)
+def get_value(key: str) -&gt; str | None:
+    &quot;&quot;&quot;Return value or None if not found.&quot;&quot;&quot;
+    ...
+
+# Use union operator for unions (not typing.Union)
+def parse_data(data: str | bytes) -&gt; dict[str, Any]:
+    &quot;&quot;&quot;Parse string or bytes data.&quot;&quot;&quot;
+    ...
+
+# Use tuple for fixed-length sequences
+def get_coordinates() -&gt; tuple[float, float]:
+    &quot;&quot;&quot;Return x, y coordinates.&quot;&quot;&quot;
+    ...
+</code></pre>
+<h4 id="type-hints-best-practices">Type Hints Best Practices</h4>
+<ul>
+<li><strong>Always use type hints</strong> on public function parameters and return types</li>
+<li><strong>Use <code>from __future__ import annotations</code></strong> at the top of modules</li>
+<li><strong>Prefer built-in types</strong> over <code>typing</code> module equivalents</li>
+<li><strong>Keep <code>typing</code> imports</strong> only for special types (Any, Callable, TypedDict, etc.)</li>
+<li><strong>Annotate complex types</strong> to improve code clarity</li>
+<li><strong>Use type aliases</strong> for complex or repeated types</li>
+</ul>
+<pre><code class="language-python">from __future__ import annotations
+
+from pathlib import Path
+from typing import Any, Callable
+
+# Type alias for clarity
+PathLike = str | Path
+
+def process_file(path: PathLike, callback: Callable[[str], Any]) -&gt; None:
+    &quot;&quot;&quot;Process a file with a callback function.&quot;&quot;&quot;
+    ...
+</code></pre>
+<hr />
+<h3 id="docstrings">Docstrings</h3>
+<p><strong>Format:</strong> PEP-257 compliant with Google-style parameter documentation</p>
+<h4 id="module-docstrings">Module Docstrings</h4>
+<pre><code class="language-python">&quot;&quot;&quot;Short module description.
+
+Longer description providing more context about the module's purpose,
+main functionality, and usage patterns.
+&quot;&quot;&quot;
+</code></pre>
+<h4 id="function-docstrings">Function Docstrings</h4>
+<pre><code class="language-python">def function_name(arg1: str, arg2: int) -&gt; bool:
+    &quot;&quot;&quot;Short description of what the function does.
+
+    Longer description if needed, explaining the function's behavior,
+    side effects, or important implementation details.
+
+    Args:
+        arg1: Description of first argument
+        arg2: Description of second argument
+
+    Returns:
+        Description of return value
+
+    Raises:
+        ValueError: When arg2 is negative
+        FileNotFoundError: When file doesn't exist
+    &quot;&quot;&quot;
+    ...
+</code></pre>
+<h4 id="class-docstrings">Class Docstrings</h4>
+<pre><code class="language-python">class ClassName:
+    &quot;&quot;&quot;Short description of the class.
+
+    Longer description explaining the class purpose, main responsibilities,
+    and usage patterns.
+
+    Attributes:
+        attr1: Description of attribute
+        attr2: Description of attribute
+    &quot;&quot;&quot;
+
+    def __init__(self, param: str) -&gt; None:
+        &quot;&quot;&quot;Initialize the class.
+
+        Args:
+            param: Description of parameter
+        &quot;&quot;&quot;
+        ...
+</code></pre>
+<hr />
+<h3 id="imports">Imports</h3>
+<p><strong>Order:</strong></p>
+<ol>
+<li>Standard library imports</li>
+<li>Third-party package imports</li>
+<li>Local application imports</li>
+</ol>
+<p><strong>Grouping:</strong> Separate each group with a blank line</p>
+<p><strong>Style:</strong> One import per line for clarity</p>
+<pre><code class="language-python"># Standard library
+import os
+import sys
+from pathlib import Path
+
+# Third-party
+import click
+import requests
+
+# Local
+from .core import process_file
+from .data import load_data
+</code></pre>
+<hr />
+<h3 id="naming-conventions">Naming Conventions</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Convention</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Functions</strong></td>
+<td><code>snake_case</code></td>
+<td><code>def process_data():</code></td>
+</tr>
+<tr>
+<td><strong>Variables</strong></td>
+<td><code>snake_case</code></td>
+<td><code>user_name = "John"</code></td>
+</tr>
+<tr>
+<td><strong>Constants</strong></td>
+<td><code>UPPER_SNAKE_CASE</code></td>
+<td><code>MAX_SIZE = 100</code></td>
+</tr>
+<tr>
+<td><strong>Classes</strong></td>
+<td><code>PascalCase</code></td>
+<td><code>class UserProfile:</code></td>
+</tr>
+<tr>
+<td><strong>Exceptions</strong></td>
+<td><code>PascalCase</code></td>
+<td><code>class ValidationError:</code></td>
+</tr>
+<tr>
+<td><strong>Private</strong></td>
+<td><code>_leading_underscore</code></td>
+<td><code>def _internal_func():</code></td>
+</tr>
+<tr>
+<td><strong>Protected</strong></td>
+<td><code>_leading_underscore</code></td>
+<td><code>self._protected_attr</code></td>
+</tr>
+<tr>
+<td><strong>Dunder</strong></td>
+<td><code>__double_underscore__</code></td>
+<td><code>__init__</code>, <code>__str__</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="code-organization">Code Organization</h3>
+<h4 id="module-structure">Module Structure</h4>
+<pre><code class="language-python">#!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Author Name &lt;email@example.com&gt;
+# SPDX-License-Identifier: LICENSE-ID
+
+&quot;&quot;&quot;Module docstring.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+# Imports (grouped as above)
+import os
+from pathlib import Path
+
+# Constants
+MAX_RETRIES = 3
+DEFAULT_TIMEOUT = 30
+
+# Type aliases
+PathLike = str | Path
+
+# Classes
+class MyClass:
+    ...
+
+# Functions
+def my_function():
+    ...
+
+# Main execution
+if __name__ == &quot;__main__&quot;:
+    ...
+</code></pre>
+<h4 id="function-length">Function Length</h4>
+<ul>
+<li><strong>Target:</strong> &lt;20-30 lines per function</li>
+<li><strong>Rationale:</strong> Easier to understand, test, and maintain</li>
+<li><strong>Refactor</strong> long functions into smaller, focused helper functions</li>
+</ul>
+<h4 id="single-responsibility">Single Responsibility</h4>
+<ul>
+<li>Each function should do <strong>one thing</strong> well</li>
+<li>Each class should have <strong>one reason to change</strong></li>
+<li>Extract complex logic into separate functions</li>
+</ul>
+<hr />
+<h3 id="modern-python-practices">Modern Python Practices</h3>
+<h4 id="string-formatting">String Formatting</h4>
+<p><strong>Prefer f-strings:</strong></p>
+<pre><code class="language-python"># Good
+name = &quot;Alice&quot;
+message = f&quot;Hello, {name}!&quot;
+
+# Avoid
+message = &quot;Hello, %s!&quot; % name
+message = &quot;Hello, {}!&quot;.format(name)
+</code></pre>
+<h4 id="path-handling">Path Handling</h4>
+<p><strong>Prefer pathlib.Path:</strong></p>
+<pre><code class="language-python">from pathlib import Path
+
+# Good
+path = Path(&quot;data&quot;) / &quot;file.txt&quot;
+if path.exists():
+    content = path.read_text()
+
+# Avoid
+import os
+path = os.path.join(&quot;data&quot;, &quot;file.txt&quot;)
+if os.path.exists(path):
+    with open(path) as f:
+        content = f.read()
+</code></pre>
+<h4 id="context-managers">Context Managers</h4>
+<p><strong>Always use <code>with</code> for resources:</strong></p>
+<pre><code class="language-python"># Good
+with open(&quot;file.txt&quot;) as f:
+    content = f.read()
+
+# Avoid
+f = open(&quot;file.txt&quot;)
+content = f.read()
+f.close()
+</code></pre>
+<h4 id="comprehensions">Comprehensions</h4>
+<p><strong>Use when readable:</strong></p>
+<pre><code class="language-python"># Good - clear and concise
+squares = [x**2 for x in range(10)]
+evens = [x for x in numbers if x % 2 == 0]
+
+# Avoid - too complex
+result = [
+    process(x, y, z)
+    for x in items
+    for y in x.subitems
+    for z in y.subsubitems
+    if condition(x, y, z)
+]
+</code></pre>
+<h4 id="enums">Enums</h4>
+<p><strong>Use for fixed sets:</strong></p>
+<pre><code class="language-python">from enum import Enum
+
+class Status(Enum):
+    PENDING = &quot;pending&quot;
+    APPROVED = &quot;approved&quot;
+    REJECTED = &quot;rejected&quot;
+</code></pre>
+<hr />
+<h3 id="error-handling">Error Handling</h3>
+<h4 id="eafp-vs-lbyl">EAFP vs LBYL</h4>
+<p><strong>Prefer EAFP</strong> (Easier to Ask Forgiveness than Permission):</p>
+<pre><code class="language-python"># Good - EAFP
+try:
+    value = config[key]
+except KeyError:
+    value = default
+
+# Avoid - LBYL
+if key in config:
+    value = config[key]
+else:
+    value = default
+</code></pre>
+<h4 id="specific-exceptions">Specific Exceptions</h4>
+<p><strong>Catch specific exceptions:</strong></p>
+<pre><code class="language-python"># Good
+try:
+    data = json.loads(text)
+except json.JSONDecodeError as exc:
+    logger.error(f&quot;Invalid JSON: {exc}&quot;)
+    raise
+
+# Avoid
+try:
+    data = json.loads(text)
+except Exception:
+    pass
+</code></pre>
+<h4 id="exception-context">Exception Context</h4>
+<p><strong>Preserve exception context:</strong></p>
+<pre><code class="language-python"># Good
+try:
+    result = risky_operation()
+except ValueError as exc:
+    msg = f&quot;Operation failed: {exc}&quot;
+    raise RuntimeError(msg) from exc
+
+# Avoid
+try:
+    result = risky_operation()
+except ValueError:
+    raise RuntimeError(&quot;Operation failed&quot;)
+</code></pre>
+<hr />
+<h2 id="tooling">Tooling</h2>
+<h3 id="formatter">Formatter</h3>
+<p><strong>black</strong> (line-length=99)</p>
+<pre><code class="language-bash"># Format all code
+black src/ tests/
+
+# Check formatting
+black --check src/ tests/
+</code></pre>
+<h3 id="linters">Linters</h3>
+<p><strong>ruff</strong> (comprehensive linting)</p>
+<pre><code class="language-bash"># Lint code
+ruff check src/ tests/
+
+# Auto-fix issues
+ruff check --fix src/ tests/
+</code></pre>
+<p><strong>isort</strong> (import sorting)</p>
+<pre><code class="language-bash"># Sort imports
+isort src/ tests/
+
+# Check import order
+isort --check-only src/ tests/
+</code></pre>
+<h3 id="type-checker">Type Checker</h3>
+<p><strong>mypy</strong> (static type checking)</p>
+<pre><code class="language-bash"># Type check code
+mypy src/
+
+# Strict mode
+mypy --strict src/
+</code></pre>
+<hr />
+<h2 id="running-checks">Running Checks</h2>
+<h3 id="quick-check">Quick Check</h3>
+<pre><code class="language-bash"># Format, lint, and test
+make quick-check
+</code></pre>
+<h3 id="individual-checks">Individual Checks</h3>
+<pre><code class="language-bash"># Format code
+make format
+
+# Run linters
+make lint
+
+# Run type checker
+mypy src/
+
+# Run tests
+make test
+
+# Run all checks
+make check
+</code></pre>
+<hr />
+<h2 id="configuration">Configuration</h2>
+<h3 id="pyprojecttoml">pyproject.toml</h3>
+<pre><code class="language-toml">[tool.black]
+line-length = 99
+target-version = ['py39']
+
+[tool.ruff]
+line-length = 99
+target-version = &quot;py39&quot;
+select = [&quot;E&quot;, &quot;F&quot;, &quot;I&quot;, &quot;N&quot;, &quot;W&quot;]
+
+[tool.isort]
+profile = &quot;black&quot;
+line_length = 99
+
+[tool.mypy]
+python_version = &quot;3.9&quot;
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+</code></pre>
+<hr />
+<h2 id="pre-commit-hooks">Pre-commit Hooks</h2>
+<p>Install pre-commit hooks to automatically check code before committing:</p>
+<pre><code class="language-bash"># Install pre-commit
+pip install pre-commit
+
+# Install hooks
+pre-commit install
+
+# Run manually
+pre-commit run --all-files
+</code></pre>
+<hr />
+<h2 id="references">References</h2>
+<h3 id="peps-python-enhancement-proposals">PEPs (Python Enhancement Proposals)</h3>
+<ul>
+<li><a href="https://peps.python.org/pep-0008/">PEP-8: Style Guide for Python Code</a></li>
+<li><a href="https://peps.python.org/pep-0257/">PEP-257: Docstring Conventions</a></li>
+<li><a href="https://peps.python.org/pep-0484/">PEP-484: Type Hints</a></li>
+<li><a href="https://peps.python.org/pep-0585/">PEP-585: Type Hinting Generics In Standard Collections</a></li>
+<li><a href="https://peps.python.org/pep-0604/">PEP-604: Allow writing union types as X | Y</a></li>
+<li><a href="https://peps.python.org/pep-0563/">PEP-563: Postponed Evaluation of Annotations</a></li>
+</ul>
+<h3 id="tools">Tools</h3>
+<ul>
+<li><a href="https://black.readthedocs.io/">Black: The uncompromising code formatter</a></li>
+<li><a href="https://docs.astral.sh/ruff/">Ruff: An extremely fast Python linter</a></li>
+<li><a href="https://mypy.readthedocs.io/">mypy: Static type checker</a></li>
+<li><a href="https://pycqa.github.io/isort/">isort: Import sorter</a></li>
+</ul>
+<hr />
+<h2 id="summary">Summary</h2>
+<p>This style guide ensures:</p>
+<ul>
+<li>✅ Consistent, readable code</li>
+<li>✅ Modern Python practices</li>
+<li>✅ Strong type safety</li>
+<li>✅ Maintainable codebase</li>
+<li>✅ Automated quality checks</li>
+</ul>
+<p><strong>Key Principles:</strong></p>
+<ol>
+<li>Clarity over cleverness</li>
+<li>Explicit over implicit</li>
+<li>Simple over complex</li>
+<li>Tested over untested</li>
+<li>Documented over undocumented</li>
+</ol>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "content.code.copy", "content.code.annotate", "content.code.mermaid"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
