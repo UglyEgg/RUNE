@@ -32,7 +32,7 @@ Thank you for your interest in contributing! RUNE is an early-stage but fast-mov
 ## ✍️ Contributing a Plugin
 
 1. Create a Bash script in `plugins/`
-2. Follow the [Plugin Development Guide](../plugin_development_guide.md)
+2. Follow the [Plugin Development Guide](../dev/plugins/advanced_json.md)
 3. Test it with example JSON piped into stdin
 4. Make sure it returns structured JSON and exits correctly
 

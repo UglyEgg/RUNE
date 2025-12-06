@@ -1,9 +1,10 @@
-from __future__ import annotations
-
 """Lifecycle Orchestration Module for RUNE."""
+
+from __future__ import annotations
 
 from pathlib import Path
 from typing import Any
+
 from rune.mediator import execute_action
 from rune.models import (
     ActionMetadata,
@@ -46,13 +47,39 @@ def list_actions() -> list[ActionMetadata]:
     return list(ACTION_REGISTRY.values())
 
 
-def _build_payload(params: dict[str, Any]) -> dict[str, Any]:
+def _build_payload(action: str, node: str, params: dict[str, Any]) -> dict[str, Any]:
     message_metadata = build_message_metadata()
     observability = build_observability()
     return {
         "message_metadata": message_metadata,
-        "payload": {"input_parameters": params},
+        "routing": {
+            "event_type": action,
+            "source_module": "orchestrator",
+            "target_node": node,
+        },
+        "payload": {
+            "schema_version": "rcs_v1",
+            "content_type": "application/json",
+            "data": {"input_parameters": params},
+        },
         "observability": observability,
+    }
+
+
+def _dry_run_output(action: str, node: str, params: dict[str, Any]) -> dict[str, Any]:
+    payload = _build_payload(action, node, params)
+    return {
+        "message_metadata": payload["message_metadata"],
+        "observability": payload["observability"],
+        "payload": {
+            "result": "dry_run",
+            "output_data": {
+                "action": action,
+                "node": node,
+                "input_parameters": params,
+            },
+        },
+        "error": None,
     }
 
 
@@ -66,6 +93,7 @@ def run_action(
     """Validate and execute a registered action."""
 
     metadata = ACTION_REGISTRY.get(action)
+    transport = "ssm" if use_ssm else "ssh"
     if not metadata:
         message_metadata = build_message_metadata()
         observability = build_observability()
@@ -74,7 +102,7 @@ def run_action(
             status="failed",
             action=action,
             node=node,
-            transport=None,
+            transport=transport,
             message_metadata=message_metadata,
             observability=observability,
             plugin_output=None,
@@ -82,34 +110,19 @@ def run_action(
         )
 
     if dry_run:
-        message_metadata = build_message_metadata()
-        observability = build_observability()
-        payload = {
-            "message_metadata": message_metadata,
-            "observability": observability,
-            "payload": {
-                "result": "dry_run",
-                "output_data": {
-                    "action": action,
-                    "node": node,
-                    "input_parameters": params,
-                },
-            },
-            "error": None,
-        }
+        dry_payload = _dry_run_output(action, node, params)
         return OrchestrationResult(
             status="dry_run",
             action=action,
             node=node,
-            transport="ssm" if use_ssm else "ssh",
-            message_metadata=message_metadata,
-            observability=observability,
-            plugin_output=payload,
+            transport=transport,
+            message_metadata=dry_payload["message_metadata"],
+            observability=dry_payload["observability"],
+            plugin_output=dry_payload,
             error=None,
         )
 
-    payload = _build_payload(params)
-    transport = "ssm" if use_ssm else "ssh"
+    payload = _build_payload(action, node, params)
     mediator_result: MediatorResult = execute_action(
         action=action,
         node=node,

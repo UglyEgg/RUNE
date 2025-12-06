@@ -1,6 +1,6 @@
-from __future__ import annotations
-
 """SSH transport for executing remote plugins."""
+
+from __future__ import annotations
 
 import json
 import subprocess
@@ -12,7 +12,9 @@ from rune.models import TransportResult
 DEFAULT_TIMEOUT = 60
 
 
-def run_remote_plugin_ssh(node: str, plugin_path: Path, input_json: dict[str, Any]) -> TransportResult:
+def run_remote_plugin_ssh(
+    node: str, plugin_path: Path, input_json: dict[str, Any]
+) -> TransportResult:
     """Execute the plugin using SSH semantics.
 
     For the MVP we assume the plugin is available locally and simulate SSH by invoking the

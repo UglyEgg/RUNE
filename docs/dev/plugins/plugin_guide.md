@@ -131,6 +131,6 @@ Future version will support dynamic registration with metadata.
 
 ---
 
-For plugin execution and message format, see `/docs/protocol_runtime.md` (RCS) and `/docs/protocol_error.md` (EPS).
+For plugin execution and message format, see `/docs/protocols/protocol_runtime.md` (RCS) and `/docs/protocols/protocol_error.md` (EPS).
 
 © 2025 Richard Majewski. Licensed under the MPL-2.0.

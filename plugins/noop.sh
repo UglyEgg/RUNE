@@ -1,16 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-INPUT=$(cat)
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+. "${SCRIPT_DIR}/lib/rune_bpcs.sh"
 
-if ! command -v jq >/dev/null 2>&1; then
-  echo '{"message_metadata": {}, "observability": {}, "payload": {"result": "error", "output_data": {}}, "error": {"code": 500, "message": "jq is required"}}'
-  exit 1
-fi
-
-MESSAGE_METADATA=$(echo "$INPUT" | jq -c '.message_metadata // {}')
-OBSERVABILITY=$(echo "$INPUT" | jq -c '.observability // {}')
-PARAMS=$(echo "$INPUT" | jq -c '.payload.input_parameters // {}')
-
-OUTPUT_DATA=$(jq -n --argjson params "$PARAMS" '{action: "noop", input_parameters: $params}')
-printf '%s\n' "{\"message_metadata\":$MESSAGE_METADATA,\"observability\":$OBSERVABILITY,\"payload\":{\"result\":\"success\",\"output_data\":$OUTPUT_DATA},\"error\":null}"
+rune_init
+PARAMS_JSON=$(rune_all_params)
+OUTPUT_DATA=$(jq -n --argjson params "$PARAMS_JSON" '{action: "noop", input_parameters: $params}')
+rune_ok "noop executed" "$OUTPUT_DATA"

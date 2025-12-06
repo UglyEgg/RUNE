@@ -1,6 +1,6 @@
-from __future__ import annotations
-
 """SSM transport placeholder for MVP."""
+
+from __future__ import annotations
 
 import json
 import os
@@ -10,7 +10,9 @@ from typing import Any
 from rune.models import TransportResult
 
 
-def run_remote_plugin_ssm(node: str, plugin_path: Path, input_json: dict[str, Any]) -> TransportResult:
+def run_remote_plugin_ssm(
+    node: str, plugin_path: Path, input_json: dict[str, Any]
+) -> TransportResult:
     """Simulate SSM execution of a plugin.
 
     The MVP implementation validates that AWS configuration exists and otherwise returns

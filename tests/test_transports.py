@@ -5,8 +5,6 @@ import os
 import subprocess
 from pathlib import Path
 
-import pytest
-
 from rune.transport_ssh import run_remote_plugin_ssh
 from rune.transport_ssm import run_remote_plugin_ssm
 
@@ -48,7 +46,10 @@ def test_run_remote_plugin_ssh_missing_binary(monkeypatch, tmp_path: Path):
 
 def test_run_remote_plugin_ssm_no_credentials(tmp_path: Path, monkeypatch):
     plugin = tmp_path / "noop.sh"
-    env = {key: os.environ.pop(key, None) for key in ("AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_SESSION_TOKEN")}
+    env = {
+        key: os.environ.pop(key, None)
+        for key in ("AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_SESSION_TOKEN")
+    }
     try:
         result = run_remote_plugin_ssm("node", plugin, {})
     finally:

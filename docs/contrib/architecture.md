@@ -6,7 +6,7 @@ This document provides a high-level view of RUNE's core components and their int
 
 ## High-Level Architecture (MVP)
 
-![High-Level Architecture](res/RUNE_diag-00.png)
+![High-Level Architecture](../res/RUNE_diag-00.png)
 
 ```mermaid
 flowchart TD

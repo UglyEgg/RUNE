@@ -1,6 +1,6 @@
-from __future__ import annotations
-
 """RUNE orchestration framework."""
+
+from __future__ import annotations
 
 from importlib.metadata import PackageNotFoundError, version
 

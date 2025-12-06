@@ -1,6 +1,6 @@
-from __future__ import annotations
-
 """Local Mediation Module implementation."""
+
+from __future__ import annotations
 
 import json
 from pathlib import Path
@@ -38,9 +38,13 @@ def execute_action(
         return _protocol_violation(action, node, transport, "Unsupported transport")
 
     if transport == "ssh":
-        transport_result = run_remote_plugin_ssh(node=node, plugin_path=plugin_path, input_json=payload)
+        transport_result = run_remote_plugin_ssh(
+            node=node, plugin_path=plugin_path, input_json=payload
+        )
     else:
-        transport_result = run_remote_plugin_ssm(node=node, plugin_path=plugin_path, input_json=payload)
+        transport_result = run_remote_plugin_ssm(
+            node=node, plugin_path=plugin_path, input_json=payload
+        )
 
     return _normalize_transport_output(
         action=action,
@@ -56,15 +60,23 @@ def _normalize_transport_output(
     transport: str,
     transport_result: TransportResult,
 ) -> MediatorResult:
+    raw_output = transport_result.stdout.strip()
+    if not raw_output:
+        return _protocol_violation(action, node, transport, "Empty response from plugin")
+
     try:
-        parsed_output = json.loads(transport_result.stdout.strip() or "{}")
+        parsed_output = json.loads(raw_output)
     except json.JSONDecodeError:
         return _protocol_violation(action, node, transport, "Malformed JSON from plugin")
 
     message_metadata = parsed_output.get("message_metadata")
     observability = parsed_output.get("observability")
     payload = parsed_output.get("payload")
-    if not isinstance(message_metadata, dict) or not isinstance(observability, dict) or not isinstance(payload, dict):
+    if (
+        not isinstance(message_metadata, dict)
+        or not isinstance(observability, dict)
+        or not isinstance(payload, dict)
+    ):
         return _protocol_violation(action, node, transport, "Missing required BPCS fields")
 
     result_value = payload.get("result")
@@ -89,7 +101,7 @@ def _normalize_transport_output(
         message=str(plugin_error.get("message", "Plugin signaled failure"))
         if isinstance(plugin_error, dict)
         else "Plugin signaled failure",
-        details=plugin_error.get("details") if isinstance(plugin_error, dict) else None,
+        details=plugin_error.get("data") if isinstance(plugin_error, dict) else None,
     )
     return MediatorResult(
         status="failed",

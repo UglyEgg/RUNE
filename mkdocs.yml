@@ -15,34 +15,47 @@ nav:
   - Home: index.md
   - Why RUNE: why_rune.md
 
-  - Getting Started:
-      - Quick Start: quick_start.md
-      - Installation: install.md
+  - Implementers:
+      - Quick Start: imp/quick_start.md
+      - Installation Guide: imp/install.md
+      - RUNE Implementation Guide: imp/rune_implementation_guide.md
 
-  - Concepts:
-      - System Architecture: system_architecture.md
-      - RUNE Implementation Guide: rune_implementation_guide.md
-      - Glossary: glossary_of_terms.md
+  - Developers:
+      - Overview: dev/index.md
 
-  - Protocols:
-      - Runtime Communication (RCS): protocol_runtime.md
-      - Error Protocol (EPS): protocol_error.md
-      - Module Registration (MRS): protocol_module.md
-      - Bash Plugin Communication (BPCS): protocol_bash.md
+      - Plugin Development:
+          - Plugin Quickstart (Beginner): dev/plugins/beginner_plugin.md
+          - Advanced Plugin JSON Guide: dev/plugins/advanced_json.md
+          - Plugin Guide: dev/plugins/plugin_guide.md
+          - Plugin Library API Reference: dev/plugins/rune_bpcs_api.md
 
-  - Development:
-      - Plugin Development Guide: plugin_development_guide.md
-      - Testing Guide: testing_guide.md
-      - Security Model: security_model.md
-      - API Reference: api_reference.md
+      - Module Development:
+          - Testing Guide: dev/modules/testing_guide.md
+          - Security Model: dev/modules/security_model.md
+          - Protocol / RCS API Overview: dev/modules/api_reference.md
+
+      - Protocols:
+          - Overview: protocols/index.md
+          - BPCS Protocol Specification: protocols/protocol_bash.md
+          - MCS Module Specification: protocols/protocol_module.md
+          - RCS Runtime Specification: protocols/protocol_runtime.md
+          - EPS Error Specification: protocols/protocol_error.md
 
   - Project:
       - Roadmap: roadmap.md
-      - Contributing: contrib/contributing.md
-      - Style Guide: contrib/STYLE_GUIDE.md
+      - Glossary: glossary.md
+      - Contributing:
+          - Overview: contrib/contributing.md
+          - Style Guide: contrib/STYLE_GUIDE.md
+          - Architecture Overview: contrib/architecture.md
+
+  #          - Source Code Reference (Auto-generated):
+  #              - Core Engine: reference/core/index.md
+  #              - Python Services: reference/python/index.md
+  #              - CLI Commands: reference/cli/index.md
 
   - Legal:
-      - Contributer License Agreement: legal/CLA.md
+      - Contributor License Agreement: legal/CLA.md
       - License (MPL-2.0): legal/LICENSE.md
       - Notice: legal/NOTICE.md
       - Patents: legal/PATENTS.md

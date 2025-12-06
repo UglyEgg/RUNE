@@ -166,9 +166,9 @@ rune run myplugin --node web01
 
 ## 7. Next Steps
 
-- [Why RUNE?](why_rune.md)
-- [System Architecture](system_architecture.md)
-- [Plugin Development Guide](plugin_development_guide.md)
+- [Why RUNE?](../why_rune.md)
+- [System Architecture](../contrib/architecture.md)
+- [Plugin Development Guide](../dev/plugins/beginner_plugin.md)
 - [RUNE Implementation Guide](rune_implementation_guide.md)
 
 RUNE is easy to start, powerful to extend.

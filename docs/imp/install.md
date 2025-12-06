@@ -169,9 +169,9 @@ RUNE maintains compatibility across patch versions for all public protocols (RCS
 ## 9. Next Steps
 
 - [Quick Start](quick_start.md)
-- [Plugin Development Guide](plugin_development_guide.md)
-- [RUNE Implementation Guide](rune_implementation_guide.md)
-- [System Architecture](system_architecture.md)
+- [Plugin Development Guide](../dev/plugins/beginner_plugin.md)
+- [RUNE Implementation Guide](../imp/rune_implementation_guide.md)
+- [System Architecture](../contrib/architecture.md)
 
 RUNE is built to be small, predictable, and safe—everything you need for fast operational response.
 

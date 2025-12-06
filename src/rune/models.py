@@ -1,6 +1,6 @@
-from __future__ import annotations
-
 """Shared dataclasses and typed objects used across the RUNE framework."""
+
+from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -21,7 +21,7 @@ __all__ = [
 
 @dataclass(slots=True)
 class ActionMetadata:
-    """Describes a registered action and where to find its plugin implementation."""
+    """Describe a registered action and where to find its plugin implementation."""
 
     name: str
     description: str
@@ -104,7 +104,7 @@ class OrchestrationResult:
 
 
 def build_message_metadata() -> dict[str, Any]:
-    """Construct the BPCS message_metadata structure."""
+    """Construct the Runtime Communication Specification message metadata."""
 
     return {
         "version": "1.0",

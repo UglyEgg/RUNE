@@ -19,8 +19,13 @@ PLUGINS = [
 def _base_input(params: dict) -> str:
     data = {
         "message_metadata": build_message_metadata(),
+        "routing": {"event_type": "noop", "source_module": "test", "target_node": "local"},
         "observability": build_observability(),
-        "payload": {"input_parameters": params},
+        "payload": {
+            "schema_version": "rcs_v1",
+            "content_type": "application/json",
+            "data": {"input_parameters": params},
+        },
     }
     return json.dumps(data)
 

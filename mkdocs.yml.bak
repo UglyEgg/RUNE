@@ -1,0 +1,48 @@
+site_name: RUNE Framework
+site_url: https://rune.entropy.quest
+repo_url: https://github.com/UglyEgg/RUNE
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - content.code.copy
+    - content.code.annotate
+    - content.code.mermaid
+
+nav:
+  - Home: index.md
+  - Why RUNE: why_rune.md
+
+  - Getting Started:
+      - Quick Start: quick_start.md
+      - Installation: install.md
+
+  - Concepts:
+      - System Architecture: system_architecture.md
+      - RUNE Implementation Guide: rune_implementation_guide.md
+      - Glossary: glossary_of_terms.md
+
+  - Protocols:
+      - Runtime Communication (RCS): protocol_runtime.md
+      - Error Protocol (EPS): protocol_error.md
+      - Module Registration (MRS): protocol_module.md
+      - Bash Plugin Communication (BPCS): protocol_bash.md
+
+  - Development:
+      - Plugin Development Guide: plugin_development_guide.md
+      - Testing Guide: testing_guide.md
+      - Security Model: security_model.md
+      - API Reference: api_reference.md
+
+  - Project:
+      - Roadmap: roadmap.md
+      - Contributing: contrib/contributing.md
+      - Style Guide: contrib/STYLE_GUIDE.md
+
+  - Legal:
+      - Contributer License Agreement: legal/CLA.md
+      - License (MPL-2.0): legal/LICENSE.md
+      - Notice: legal/NOTICE.md
+      - Patents: legal/PATENTS.md
