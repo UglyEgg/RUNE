@@ -1,16 +1,12 @@
-# SPDX-FileCopyrightText: 2025 Richard Majewski <uglyegg@users.noreply.github.com>
-# SPDX-License-Identifier: MPL-2.0
+"""RUNE orchestration framework."""
 
-"""Top-level package for the RUNE orchestration framework."""
+from __future__ import annotations
 
-from importlib.metadata import version
+from importlib.metadata import PackageNotFoundError, version
 
-__all__ = ["get_version"]
+__all__ = ["__version__"]
 
-
-def get_version() -> str:
-    """Return the installed package version."""
-    try:
-        return version("rune")
-    except Exception:
-        return "0.0.0"
+try:
+    __version__ = version("rune")
+except PackageNotFoundError:  # pragma: no cover - during editable installs
+    __version__ = "0.0.0"

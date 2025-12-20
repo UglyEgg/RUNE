@@ -1,0 +1,9 @@
+# markdownlint-cli2 configs
+#
+default: true
+
+# Lines > 80 characters
+MD013: false
+
+#  Repeated H1 headings
+MD024: false

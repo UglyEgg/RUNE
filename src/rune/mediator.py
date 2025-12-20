@@ -1,42 +1,113 @@
-# SPDX-FileCopyrightText: 2025 Richard Majewski <uglyegg@users.noreply.github.com>
-# SPDX-License-Identifier: MPL-2.0
-
-"""Mediator coordinating transport selection and plugin invocation."""
+"""Local Mediation Module implementation."""
 
 from __future__ import annotations
 
-from typing import Optional
+import json
+from pathlib import Path
+from typing import Any
 
-from rune.models import PluginRequest, PluginResponse
-from rune.transport_ssh import SSHTransport
-from rune.transport_ssm import SSMTransport
+from rune.models import MediatorResult, StructuredError, TransportResult
+from rune.transport_ssh import run_remote_plugin_ssh
+from rune.transport_ssm import run_remote_plugin_ssm
+
+SUPPORTED_TRANSPORTS = {"ssh", "ssm"}
 
 
-class Mediator:
-    """Single mediation layer normalising transport behaviour."""
+def _protocol_violation(action: str, node: str, transport: str, message: str) -> MediatorResult:
+    error = StructuredError(code=400, message=message)
+    return MediatorResult(
+        status="failed",
+        action=action,
+        node=node,
+        transport=transport,
+        plugin_output=None,
+        error=error,
+    )
 
-    def __init__(
-        self,
-        ssh_transport: Optional[SSHTransport] = None,
-        ssm_transport: Optional[SSMTransport] = None,
-    ) -> None:
-        self.ssh_transport = ssh_transport or SSHTransport()
-        self.ssm_transport = ssm_transport or SSMTransport()
 
-    def execute(self, action: str, node: str, request: PluginRequest) -> PluginResponse:
-        """Execute an action on a node, selecting the appropriate transport.
+def execute_action(
+    action: str,
+    node: str,
+    plugin_path: Path,
+    payload: dict[str, Any],
+    transport: str,
+) -> MediatorResult:
+    """Execute a plugin via the selected transport and normalize its output."""
 
-        For the MVP, SSH is always used while SSM remains a placeholder.
-        """
+    if transport not in SUPPORTED_TRANSPORTS:
+        return _protocol_violation(action, node, transport, "Unsupported transport")
 
-        transport = self._select_transport(node)
-        return transport.run_plugin(action=action, node=node, request=request)
+    if transport == "ssh":
+        transport_result = run_remote_plugin_ssh(
+            node=node, plugin_path=plugin_path, input_json=payload
+        )
+    else:
+        transport_result = run_remote_plugin_ssm(
+            node=node, plugin_path=plugin_path, input_json=payload
+        )
 
-    def _select_transport(self, node: str):
-        """Choose the transport for a node.
+    return _normalize_transport_output(
+        action=action,
+        node=node,
+        transport=transport,
+        transport_result=transport_result,
+    )
 
-        The MVP unconditionally picks SSH but provides a hook for future logic.
-        """
 
-        _ = node  # placeholder for routing heuristics
-        return self.ssh_transport
+def _normalize_transport_output(
+    action: str,
+    node: str,
+    transport: str,
+    transport_result: TransportResult,
+) -> MediatorResult:
+    raw_output = transport_result.stdout.strip()
+    if not raw_output:
+        return _protocol_violation(action, node, transport, "Empty response from plugin")
+
+    try:
+        parsed_output = json.loads(raw_output)
+    except json.JSONDecodeError:
+        return _protocol_violation(action, node, transport, "Malformed JSON from plugin")
+
+    message_metadata = parsed_output.get("message_metadata")
+    observability = parsed_output.get("observability")
+    payload = parsed_output.get("payload")
+    if (
+        not isinstance(message_metadata, dict)
+        or not isinstance(observability, dict)
+        or not isinstance(payload, dict)
+    ):
+        return _protocol_violation(action, node, transport, "Missing required BPCS fields")
+
+    result_value = payload.get("result")
+    if result_value not in {"success", "error", "dry_run"}:
+        return _protocol_violation(action, node, transport, "Invalid payload result field")
+
+    if transport_result.exit_code == 0 and result_value == "success":
+        return MediatorResult(
+            status="success",
+            action=action,
+            node=node,
+            transport=transport,
+            plugin_output=parsed_output,
+            error=None,
+        )
+
+    plugin_error = parsed_output.get("error")
+    structured_error = StructuredError(
+        code=int(plugin_error.get("code", transport_result.exit_code or 1))
+        if isinstance(plugin_error, dict)
+        else int(transport_result.exit_code or 1),
+        message=str(plugin_error.get("message", "Plugin signaled failure"))
+        if isinstance(plugin_error, dict)
+        else "Plugin signaled failure",
+        details=plugin_error.get("data") if isinstance(plugin_error, dict) else None,
+    )
+    return MediatorResult(
+        status="failed",
+        action=action,
+        node=node,
+        transport=transport,
+        plugin_output=parsed_output,
+        error=structured_error,
+    )

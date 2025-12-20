@@ -1,123 +1,62 @@
-# RUNE API Reference (Planned Interface)
+# API reference
 
-This document outlines the future RUNE REST API for triggering actions, introspecting available plugins, and querying status. It is not required for MVP, but defines the planned structure for dashboard and programmatic integration.
+This document describes the operator facing CLI surface and the protocol level contracts that make RUNE automation friendly.
 
----
+If you are looking for message formats, start with [RCS](rcs.md), [BPCS](bpcs.md), and [EPS](eps.md).
 
-## Base URL
+## CLI surface
 
-```
-POST /v1/run
-GET  /v1/actions
-GET  /v1/status/:job_id
-```
+### Execute an action
 
----
-
-## Authentication
-
-- Bearer token or mutual TLS (future)
-- Headers:
-
-  ```http
-  Authorization: Bearer <token>
-  Content-Type: application/json
-  ```
-
----
-
-## `POST /v1/run`
-
-Trigger a remote action on a node.
-
-### Request Body
-
-```json
-{
-  "action": "gather-logs",
-  "node": "host-123",
-  "parameters": {
-    "duration": "5m"
-  },
-  "trace_id": "optional-guid-here"
-}
+```bash
+rune run <action> --node <hostname-or-node-id> [--param key=value ...] [--json]
 ```
 
-### Response
+- `action`: registry name of the action to run
+- `--node`: target node identifier
+- `--param key=value`: repeatable key value parameters passed to the plugin input
+- `--json`: emit machine readable output
 
-```json
-{
-  "job_id": "abc123",
-  "status": "submitted",
-  "trace_id": "abc123",
-  "message": "Action accepted"
-}
-```
+### Output shape
 
----
+In JSON mode, the CLI emits a stable success or failure shape:
 
-## `GET /v1/actions`
+- Success: BPCS style payload with `error: null`
+- Failure: an EPS envelope (or an EPS shaped error object) depending on output mode
 
-List available actions (via MRS metadata).
+The intent is that automation can reliably detect failures without parsing console text.
 
-### Response
+### Exit codes
 
-```json
-[
-  {
-    "name": "restart-docker",
-    "description": "Restarts Docker service",
-    "input_schema": {...},
-    "output_schema": {...}
-  }
-]
-```
+The CLI should follow standard conventions:
 
----
+- `0` success
+- non zero failure
 
-## `GET /v1/status/:job_id`
+Plugins may use more granular exit codes. The LMM interprets them using BPCS conventions.
 
-Retrieve execution status and results.
+## Python API surface (library mode)
 
-### Response (Success)
+RUNE is designed so core components can be embedded in automation:
 
-```json
-{
-  "job_id": "abc123",
-  "status": "complete",
-  "result": {
-    "output_data": {
-      "archive": "/tmp/logs.tar.gz"
-    },
-    "exit_code": 0
-  }
-}
-```
+- LOM validates requests and consults registry
+- LMM executes via transport and normalizes results
 
-### Response (Failure)
+Public Python APIs are intentionally small. The stable contracts are the protocols.
 
-```json
-{
-  "job_id": "abc123",
-  "status": "failed",
-  "error": {
-    "code": -32001,
-    "message": "Non-zero exit code",
-    "data": {
-      "plugin": "restart-nomad",
-      "exit_code": 1
-    }
-  }
-}
-```
+## Protocol level API
 
----
+The most stable interfaces in RUNE are message contracts.
 
-## Notes
+- Runtime requests and responses use RCS envelopes.
+- Capability registration uses MRS.
+- Plugins use BPCS on stdin and stdout.
+- Errors that must propagate are expressed as EPS.
 
-- Execution is asynchronous
-- `job_id` and `trace_id` are UUIDs
-- Internally routes through LOM → LMM → plugin → back to client
-- Response conforms to RCS or EPS
+This makes the system suitable for integration with:
 
-© 2025 Richard Majewski. Licensed under the MPL-2.0.
+- ticketing workflows
+- SOAR tooling
+- chatops bots
+- CI pipelines
+- internal runbook automation

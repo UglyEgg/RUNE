@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-label="RUNE Runtime Message Flow">
+  <title>RUNE Runtime Message Flow</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#111"/>
+    </marker>
+    <style>
+      .box { fill: #fff; stroke: #111; stroke-width: 2; rx: 12; ry: 12; }
+      .label { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+                font-size: 16px; fill: #111; }
+      .title { font-size: 20px; font-weight: 700; }
+      .small { font-size: 14px; }
+      .line { stroke: #111; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .dash { stroke-dasharray: 6 6; }
+      .note { font-size: 13px; fill: #111; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1200" height="640" fill="#fff"/>
+<text class="label title" x="24" y="36">RUNE Runtime Message Flow (RCS + BPCS + EPS)</text>
+<text class="label note" x="24" y="60">Happy path and error path for executing one action.</text>
+<rect class="box" x="50" y="90" width="140" height="60"/>
+<text class="label" x="120.0" y="124.0" text-anchor="middle">CLI</text>
+<path class="line dash" style="marker-end:none" d="M 120 150 L 120 610"/>
+<rect class="box" x="290" y="90" width="140" height="60"/>
+<text class="label" x="360.0" y="124.0" text-anchor="middle">LOM</text>
+<path class="line dash" style="marker-end:none" d="M 360 150 L 360 610"/>
+<rect class="box" x="530" y="90" width="140" height="60"/>
+<text class="label" x="600.0" y="124.0" text-anchor="middle">LMM</text>
+<path class="line dash" style="marker-end:none" d="M 600 150 L 600 610"/>
+<rect class="box" x="790" y="90" width="140" height="60"/>
+<text class="label" x="860.0" y="124.0" text-anchor="middle">Remote Host</text>
+<path class="line dash" style="marker-end:none" d="M 860 150 L 860 610"/>
+<rect class="box" x="990" y="90" width="140" height="60"/>
+<text class="label" x="1060.0" y="124.0" text-anchor="middle">Plugin</text>
+<path class="line dash" style="marker-end:none" d="M 1060 150 L 1060 610"/>
+<path class="line" d="M 120 190 L 360 190"/>
+<text class="label small" x="240.0" y="182.0" text-anchor="middle">RCS: execute_action</text>
+<path class="line" d="M 360 245 L 600 245"/>
+<text class="label small" x="480.0" y="237.0" text-anchor="middle">RCS: route/validate</text>
+<path class="line" d="M 600 300 L 860 300"/>
+<text class="label small" x="730.0" y="292.0" text-anchor="middle">SSH/SSM: run plugin</text>
+<path class="line" d="M 860 355 L 1060 355"/>
+<text class="label small" x="960.0" y="347.0" text-anchor="middle">BPCS stdin JSON</text>
+<path class="line" d="M 1060 410 L 860 410"/>
+<text class="label small" x="960.0" y="402.0" text-anchor="middle">BPCS stdout JSON</text>
+<path class="line" d="M 860 465 L 600 465"/>
+<text class="label small" x="730.0" y="457.0" text-anchor="middle">stdout + exit code</text>
+<path class="line" d="M 600 520 L 360 520"/>
+<text class="label small" x="480.0" y="512.0" text-anchor="middle">RCS response: result</text>
+<path class="line" d="M 360 575 L 120 575"/>
+<text class="label small" x="240.0" y="567.0" text-anchor="middle">CLI JSON output</text>
+<path class="line dash" style="marker-end:none" d="M 40 520 L 1160 520"/>
+<text class="label note" x="24" y="545">Error branch (example): plugin fails validation or execution.</text>
+<path class="line" d="M 860 575 L 600 575"/>
+<text class="label small" x="730.0" y="567.0" text-anchor="middle">failure: non-zero exit / invalid JSON</text>
+<rect class="box" x="650" y="585" width="420" height="40"/>
+<text class="label small" x="860" y="610" text-anchor="middle">LMM emits EPS → routes to ErrorHandler → returns RCS error response</text>
+
+</svg>

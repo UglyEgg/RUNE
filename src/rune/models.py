@@ -1,113 +1,119 @@
-# SPDX-FileCopyrightText: 2025 Richard Majewski <uglyegg@users.noreply.github.com>
-# SPDX-License-Identifier: MPL-2.0
-
-"""Data models for RUNE orchestration messages and errors."""
+"""Shared dataclasses and typed objects used across the RUNE framework."""
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass, field
+from dataclasses import dataclass
 from datetime import datetime, timezone
-from typing import Any, Dict, Optional
+from pathlib import Path
+from typing import Any
 from uuid import uuid4
 
-
-@dataclass(slots=True)
-class MessageMetadata:
-    """Metadata associated with plugin requests and responses."""
-
-    version: str = "1.0"
-    message_id: str = field(default_factory=lambda: str(uuid4()))
-    created_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
-    correlation_id: Optional[str] = None
-
-
-@dataclass(slots=True)
-class ObservabilityContext:
-    """Trace identifiers to correlate calls across the system."""
-
-    trace_id: str = field(default_factory=lambda: str(uuid4()))
-    span_id: str = field(default_factory=lambda: str(uuid4()))
+__all__ = [
+    "ActionMetadata",
+    "StructuredError",
+    "TransportResult",
+    "MediatorResult",
+    "OrchestrationResult",
+    "build_message_metadata",
+    "build_observability",
+]
 
 
 @dataclass(slots=True)
-class RuneError:
-    """Structured error aligned with the RUNE Error Propagation Specification (EPS)."""
+class ActionMetadata:
+    """Describe a registered action and where to find its plugin implementation."""
+
+    name: str
+    description: str
+    plugin_path: Path
+
+
+@dataclass(slots=True)
+class StructuredError:
+    """Error envelope conforming to the Error Protocol Specification."""
 
     code: int
     message: str
-    details: Optional[Dict[str, Any]] = None
+    details: dict[str, Any] | None = None
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Serialize the error to a dictionary."""
+    def to_dict(self) -> dict[str, Any]:
+        """Serialize the error for JSON emission."""
+
         return {"code": self.code, "message": self.message, "details": self.details}
 
 
 @dataclass(slots=True)
-class PluginRequest:
-    """Payload delivered to remote plugins via stdin."""
+class TransportResult:
+    """Raw output from a transport call without protocol interpretation."""
 
-    message_metadata: MessageMetadata = field(default_factory=MessageMetadata)
-    payload: Dict[str, Any] = field(default_factory=lambda: {"input_parameters": {}})
-    observability: ObservabilityContext = field(default_factory=ObservabilityContext)
+    stdout: str
+    stderr: str
+    exit_code: int
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Convert the request into a JSON-serialisable dictionary."""
+
+@dataclass(slots=True)
+class MediatorResult:
+    """Normalized output from the Local Mediation Module."""
+
+    status: str
+    action: str
+    node: str
+    transport: str
+    plugin_output: dict[str, Any] | None
+    error: StructuredError | None
+
+    def to_dict(self) -> dict[str, Any]:
+        """Convert the mediator result into an EPS-style dictionary."""
+
         return {
-            "message_metadata": asdict(self.message_metadata),
-            "payload": self.payload,
-            "observability": asdict(self.observability),
+            "status": self.status,
+            "action": self.action,
+            "node": self.node,
+            "transport": self.transport,
+            "plugin_output": self.plugin_output,
+            "error": self.error.to_dict() if self.error else None,
         }
 
 
 @dataclass(slots=True)
-class PluginResponse:
-    """Standardised plugin output following the Bash Plugin Communication Specification."""
+class OrchestrationResult:
+    """Public result returned by the Lifecycle Orchestration Module."""
 
-    message_metadata: MessageMetadata
-    payload: Optional[Dict[str, Any]]
-    observability: ObservabilityContext
-    error: Optional[RuneError] = None
+    status: str
+    action: str
+    node: str
+    transport: str | None
+    message_metadata: dict[str, Any]
+    observability: dict[str, Any]
+    plugin_output: dict[str, Any] | None
+    error: StructuredError | None
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Convert the response into a JSON-serialisable dictionary."""
+    def to_dict(self) -> dict[str, Any]:
+        """Serialize the orchestration result using EPS field names."""
+
         return {
-            "message_metadata": asdict(self.message_metadata),
-            "payload": self.payload,
-            "observability": asdict(self.observability),
+            "status": self.status,
+            "action": self.action,
+            "node": self.node,
+            "transport": self.transport,
+            "message_metadata": self.message_metadata,
+            "observability": self.observability,
+            "plugin_output": self.plugin_output,
             "error": self.error.to_dict() if self.error else None,
         }
 
-    @classmethod
-    def success(cls, output_data: Dict[str, Any], metadata: Optional[MessageMetadata] = None,
-                observability: Optional[ObservabilityContext] = None) -> "PluginResponse":
-        """Create a successful plugin response."""
-        metadata = metadata or MessageMetadata()
-        observability = observability or ObservabilityContext()
-        return cls(
-            message_metadata=metadata,
-            payload={"result": "success", "output_data": output_data},
-            observability=observability,
-            error=None,
-        )
 
-    @classmethod
-    def failure(
-        cls,
-        error: RuneError,
-        metadata: Optional[MessageMetadata] = None,
-        observability: Optional[ObservabilityContext] = None,
-    ) -> "PluginResponse":
-        """Create a failed plugin response."""
-        metadata = metadata or MessageMetadata()
-        observability = observability or ObservabilityContext()
-        return cls(
-            message_metadata=metadata,
-            payload=None,
-            observability=observability,
-            error=error,
-        )
+def build_message_metadata() -> dict[str, Any]:
+    """Construct the Runtime Communication Specification message metadata."""
 
-    @property
-    def is_success(self) -> bool:
-        """Return True when the response represents a successful execution."""
-        return self.error is None and bool(self.payload)
+    return {
+        "version": "1.0",
+        "message_id": str(uuid4()),
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+def build_observability() -> dict[str, Any]:
+    """Construct observability tracing identifiers."""
+
+    return {"trace_id": str(uuid4()), "span_id": str(uuid4())}

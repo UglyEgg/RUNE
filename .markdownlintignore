@@ -1,0 +1,35 @@
+# Version control
+.git/
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# UV cache and directories
+.uv/
+.uv-cache/
+
+# Build and distribution
+build/
+dist/
+*.egg-info/
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE and editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node modules (if using any JS tools)
+node_modules/
+
+# Documentation examples (may contain intentional formatting for display)
+MARKDOWN_LINTING_QUICK_REFERENCE.md
+MARKDOWN_LINTING_IMPROVEMENTS_SUMMARY.md
+docs/MARKDOWN_LINTING.md

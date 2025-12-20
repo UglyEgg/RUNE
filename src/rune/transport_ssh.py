@@ -1,28 +1,42 @@
-# SPDX-FileCopyrightText: 2025 Richard Majewski <uglyegg@users.noreply.github.com>
-# SPDX-License-Identifier: MPL-2.0
-
-"""SSH transport stub for plugin execution."""
+"""SSH transport for executing remote plugins."""
 
 from __future__ import annotations
 
 import json
-from typing import Dict
+import subprocess
+from pathlib import Path
+from typing import Any
 
-from rune.models import PluginRequest, PluginResponse
+from rune.models import TransportResult
+
+DEFAULT_TIMEOUT = 60
 
 
-class SSHTransport:
-    """Simplified SSH transport that returns stubbed plugin output."""
+def run_remote_plugin_ssh(
+    node: str, plugin_path: Path, input_json: dict[str, Any]
+) -> TransportResult:
+    """Execute the plugin using SSH semantics.
 
-    def run_plugin(self, action: str, node: str, request: PluginRequest) -> PluginResponse:
-        """Pretend to execute a remote plugin over SSH and return a stubbed response."""
+    For the MVP we assume the plugin is available locally and simulate SSH by invoking the
+    script directly. The function still captures stdout, stderr, and exit code to match the
+    transport contract.
+    """
 
-        payload: Dict[str, object] = {
-            "transport": "ssh",
-            "action": action,
-            "node": node,
-            "input_parameters": request.payload.get("input_parameters", {}),
-            "raw_request": json.loads(json.dumps(request.to_dict())),  # ensure JSON-safe copy
-        }
-        return PluginResponse.success(output_data=payload, metadata=request.message_metadata,
-                                      observability=request.observability)
+    try:
+        completed = subprocess.run(
+            ["bash", str(plugin_path)],
+            input=json.dumps(input_json),
+            text=True,
+            capture_output=True,
+            timeout=DEFAULT_TIMEOUT,
+            check=False,
+        )
+        return TransportResult(
+            stdout=completed.stdout,
+            stderr=completed.stderr,
+            exit_code=completed.returncode,
+        )
+    except subprocess.TimeoutExpired as exc:
+        return TransportResult(stdout="", stderr=str(exc), exit_code=124)
+    except FileNotFoundError as exc:
+        return TransportResult(stdout="", stderr=str(exc), exit_code=255)

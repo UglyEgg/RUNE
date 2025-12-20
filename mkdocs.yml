@@ -2,32 +2,72 @@ site_name: RUNE Framework
 site_url: https://rune.entropy.quest
 repo_url: https://github.com/UglyEgg/RUNE
 edit_uri: edit/main/docs/
+copyright: 'Copyright &copy; 2025-2026 Richard Majewski. Licensed under <a href="/legal/LICENSE/">MPL-2.0</a>.'
+
 theme:
   name: material
+  logo: assets/images/rune.svg
+  favicon: assets/images/rune_favicon.ico
   features:
     - navigation.tabs
+    - navigation.sections
     - content.code.copy
-    - content.code.annotate
-    - content.code.mermaid
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - assets/javascripts/mermaid-init.js
+
 nav:
   - Home: index.md
+  - Why RUNE: why_rune.md
+
+  - Getting Started:
+      - Quick Start: quick_start.md
+      - Installation: install.md
+
+  - Concepts:
+      - Architecture: architecture.md
+      - Mediation Model: mediation_model.md
+      - Action Lifecycle: lifecycle.md
+      - Design Principles: Design_Principles.md
+      - Positioning: positioning.md
+      - Glossary: glossary.md
+
   - Protocols:
-      - Runtime Communication (RCS): protocol_runtime.md
-      - Module Registration (MRS): protocol_module.md
-      - Error Protocol (EPS): protocol_error.md
+      - Runtime Communication (RCS): rcs.md
+      - Error Protocol (EPS): eps.md
+      - Module Registration (MRS): mrs.md
+      - Bash Plugin Communication (BPCS): bpcs.md
+
   - Development:
-      - Plugin Guide: plugin_development_guide.md
-      - System Architecture: system_architecture.md
+      - Plugin Development Guide: plugin_dev_guide.md
+      - Bash Library Reference: bash_library_reference.md
+      - Testing Guide: testing.md
+      - Style Guide: STYLE_GUIDE.md
       - Security Model: security_model.md
-      - Testing Guide: testing_guide.md
       - API Reference: api_reference.md
-      - Glossary: glossary_of_terms.md
-  - Roadmap: roadmap.md
-  - Contributing:
-      - Getting Started: contrib/contributing.md
-      - Style Guide: contrib/STYLE_GUIDE.md
+
+  - Reference:
+      - Documentation Map: RUNE_Complete_Refernce.md
+      - JSON Appendix: json_appendix.md
+      - Diagrams: diagrams.md
+
+  - Project:
+      - Roadmap: roadmap.md
+      - Contributing: contributing.md
+
   - Legal:
-      - Contributer License Agreement: legal/CLA.md
+      - Contributor License Agreement: legal/CLA.md
       - License (MPL-2.0): legal/LICENSE.md
       - Notice: legal/NOTICE.md
       - Patents: legal/PATENTS.md

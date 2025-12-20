@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 512 512" role="img" aria-label="RUNE icon">
+  <title>RUNE icon</title>
+  <g fill="none" stroke="#1f6feb" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M256 46 L437 151 L437 361 L256 466 L75 361 L75 151 Z" stroke-width="22"/>
+    <path d="M220 150 L220 370" stroke-width="34"/>
+    <path d="M220 195 L340 245" stroke-width="34"/>
+    <path d="M220 260 L340 320" stroke-width="34"/>
+  </g>
+</svg>

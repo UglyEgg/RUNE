@@ -1,82 +1,97 @@
-# RUNE Security Model
+# Security model
 
-This document outlines the security principles and safeguards embedded in RUNE's MVP design. The goal is to ensure remote actions are controlled, auditable, and constrained by least privilege.
+RUNE is designed for corporate IT environments where remote remediation is powerful and therefore risky. The security model is built around separation of concerns and explicit trust boundaries.
 
----
+RUNE assumes you already have an authenticated and authorized transport. RUNE does not invent a new remote access system. It uses established mechanisms (SSH or SSM) and focuses on safe execution, observability, and consistent outcomes.
 
-## Threat Model
+## Trust boundaries
 
-RUNE is designed to execute remote commands across Linux systems triggered by operators or automated systems. Key risks:
+### Operator boundary
 
-- Unauthorized action execution
-- Plugin misuse or privilege escalation
-- Leakage of secrets or sensitive output
-- Insecure transport of execution payloads
+The CLI is an operator interface. Your organization controls:
 
----
+- who is allowed to run RUNE
+- which actions they can execute
+- how approvals are handled (change management, break glass)
 
-## Security Principles
+### Mediation boundary
 
-- **Agentless by default**: No long-running daemons on endpoints
-- **Transport abstraction**: SSH/SSM handles identity, encryption, and auth
-- **Explicit plugin invocation**: No dynamic code injection or reflection
-- **Structured I/O**: Prevents script injection or sloppy command output parsing
+The LMM is the enforcement point. It is responsible for:
 
----
+- transport selection and configuration
+- output validation and normalization
+- consistent error handling and routing
+- applying timeouts and retry policy
 
-## Authentication
+Plugins never bypass mediation.
 
-- **SSH**: Leverages host/user SSH keys, sudo restrictions, or bastion models
-- **SSM**: IAM-based authentication tied to instance profile or SSO identity
+### Target node boundary
 
----
+Plugins execute on the target node with the privileges available to the transport user.
 
-## Authorization (MVP Scope)
+This is deliberate. In most corporate environments, privilege is managed via:
 
-- CLI can restrict which users can run which plugins
-- Plugin whitelist enforced by LOM
-- Future: RBAC policy engine tied to user/session metadata
+- sudo policies
+- SSM command execution policies
+- OS level access controls
 
----
+RUNE does not replace those systems.
 
-## Plugin Execution Boundaries
+## Threat model highlights
 
-- Plugins must run as non-root unless explicitly whitelisted
-- RUNE can enforce `sudo -u restricted_user` when calling plugins
-- Output parsing is validated before being accepted
+### Risk: arbitrary command execution
 
----
+RUNE executes scripts on remote nodes. This is inherently high impact.
 
-## Secrets Handling
+Mitigations:
 
-- No secrets should be embedded in plugin code
-- Plugins should reference external secret stores (e.g. Vault, SSM Parameter Store)
-- Future RUNE version may inject secrets securely via environment or temp file
+- controlled plugin distribution (package repo, signed artifacts, change control)
+- narrow plugin scope and least privilege sudo rules
+- registry driven allow lists and policy enforcement in LOM
+- explicit high impact action flags that require operator acknowledgment
 
----
+### Risk: untrusted plugin output
 
-## Audit & Logging
+Plugins are treated as untrusted input. The LMM:
 
-- All invocations should log:
+- requires one JSON object on stdout
+- captures stderr separately
+- validates the BPCS structure before trusting any fields
+- normalizes failures into EPS for consistent handling
 
-  - Timestamp
-  - Target node
-  - Action invoked
-  - Exit status / trace ID
+### Risk: secrets exposure
 
-- Logs written locally and/or sent to centralized observability sink
+Plugins should not print secrets. RUNE supports structured output, so you can:
 
----
+- avoid dumping configuration files
+- return only required values
+- keep verbose diagnostics in stderr and restrict log collection
 
-## Hardening Recommendations
+Operationally, handle secrets via:
 
-- Restrict plugin directory access to root or ops group
-- Use SSH key constraints (`from=`, `command=`)
-- Use session-level trace ID for every action
-- Disable direct shell access to plugin execution host if possible
+- environment injection from your secret manager
+- SSM parameters or secure files on node
+- minimal output policies in your log pipeline
 
----
+### Risk: replay and tampering (future capable)
 
-RUNE is not a privilege escalator—it assumes least privilege at every layer. All actions must be deliberate, accountable, and traceable.
+RCS and EPS include optional security metadata fields (identity, signatures, key ids). These exist so deployments can add message signing or encryption where needed, without changing the envelope shape.
 
-© 2025 Richard Majewski. Licensed under the MPL-2.0.
+If you do not implement signing, do not rely on these fields for security. Rely on the transport security and operational controls.
+
+## Audit and observability
+
+RUNE is designed to be auditable:
+
+- message id and correlation id provide request lineage
+- trace id and span id support cross system correlation
+- errors are normalized into EPS with fingerprints and context
+
+This makes it practical to feed RUNE outputs into SIEM and incident management systems.
+
+## Recommended operational practices
+
+- treat plugin bundles as production artifacts with review and versioning
+- run RUNE from controlled runners (CI, automation hosts) rather than laptops where possible
+- keep actions small, idempotent when feasible, and explicitly reversible when not
+- log structured results centrally and restrict raw stderr logs as needed
