@@ -2,6 +2,8 @@
 
 RUNE is a remediation execution framework for corporate IT operations. It runs curated recovery actions (plugins) on remote Linux hosts and returns structured, machine readable results.
 
+RUNE is a personal platform project that captures how I think about reliability, mediation, and operational clarity in real-world systems.
+
 RUNE is intentionally not a configuration management system. It does not manage desired state. It executes targeted actions to recover services, validate system health, and automate runbooks with audit friendly output.
 
 ## What RUNE is for

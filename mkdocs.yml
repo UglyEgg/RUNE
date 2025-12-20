@@ -40,6 +40,7 @@ nav:
       - Mediation Model: mediation_model.md
       - Action Lifecycle: lifecycle.md
       - Design Principles: Design_Principles.md
+      - Positioning: positioning.md
       - Glossary: glossary.md
 
   - Protocols:
@@ -59,6 +60,7 @@ nav:
   - Reference:
       - Documentation Map: RUNE_Complete_Refernce.md
       - JSON Appendix: json_appendix.md
+      - Diagrams: diagrams.md
 
   - Project:
       - Roadmap: roadmap.md
