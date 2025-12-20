@@ -1,0 +1,3840 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://rune.entropy.quest/mrs/">
+      
+      
+        <link rel="prev" href="../eps/">
+      
+      
+        <link rel="next" href="../bpcs/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/rune_favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Module Registration (MRS) - RUNE Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-registration-specification-mrs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="RUNE Framework" class="md-header__button md-logo" aria-label="RUNE Framework" data-md-component="logo">
+      
+  <img src="../assets/images/rune.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RUNE Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Module Registration (MRS)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/UglyEgg/RUNE" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../why_rune/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Why RUNE
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../quick_start/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../architecture/" class="md-tabs__link">
+          
+  
+  
+  Concepts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../rcs/" class="md-tabs__link">
+          
+  
+  
+  Protocols
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../plugin_dev_guide/" class="md-tabs__link">
+          
+  
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../RUNE_Complete_Refernce/" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../roadmap/" class="md-tabs__link">
+          
+  
+  
+  Project
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../legal/CLA/" class="md-tabs__link">
+          
+  
+  
+  Legal
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="RUNE Framework" class="md-nav__button md-logo" aria-label="RUNE Framework" data-md-component="logo">
+      
+  <img src="../assets/images/rune.svg" alt="logo">
+
+    </a>
+    RUNE Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/UglyEgg/RUNE" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why_rune/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Why RUNE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick_start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mediation_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mediation Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Action Lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Design_Principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Principles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../positioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Positioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocols
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocols
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rcs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime Communication (RCS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Protocol (EPS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Registration (MRS)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Registration (MRS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocol-architecture-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocol Architecture Context
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-use-this-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use This Specification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registration-message-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registration Message Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registration Message Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complete-format-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Format Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Specifications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Field Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-identity-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Identity Section
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capability-declaration-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capability Declaration Section
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Capability Declaration Section">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-definition-object-within-provides_events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event Definition Object (within provides_events)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-requirements-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Requirements Section
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical Requirements Section">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependency-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-requirements-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource Requirements Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health-check-endpoint-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health Check Endpoint Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registration-metadata-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registration Metadata Section
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-schema-definition-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event Schema Definition Format
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registration-protocol-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registration Protocol Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registration Protocol Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module_registration_request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MODULE_REGISTRATION_REQUEST
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module_registration_response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MODULE_REGISTRATION_RESPONSE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module_registration_update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MODULE_REGISTRATION_UPDATE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module_deregistration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MODULE_DEREGISTRATION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registration_heartbeat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REGISTRATION_HEARTBEAT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-eps-is-used-instead-of-mrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When EPS is Used Instead of MRS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registration-error-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registration Error Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-registration-error-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Registration Error Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registration-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registration Lifecycle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registration Lifecycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-lifecycle-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Lifecycle Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lifecycle-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Override
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-required-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal Required Registration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Implementations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example Implementations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#emailalerter-module-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EmailAlerter Module Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-monitor-module-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Monitor Module Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-processor-module-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Processor Module Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bpcs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bash Plugin Communication (BPCS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Development
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin_dev_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin Development Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bash_library_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bash Library Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../STYLE_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Style Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RUNE_Complete_Refernce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../json_appendix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON Appendix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diagrams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagrams
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../legal/CLA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributor License Agreement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../legal/LICENSE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License (MPL-2.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../legal/NOTICE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../legal/PATENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocol-architecture-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocol Architecture Context
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-use-this-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use This Specification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registration-message-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registration Message Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registration Message Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complete-format-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Format Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Specifications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Field Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-identity-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Identity Section
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capability-declaration-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capability Declaration Section
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Capability Declaration Section">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-definition-object-within-provides_events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event Definition Object (within provides_events)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-requirements-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Requirements Section
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical Requirements Section">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependency-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-requirements-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource Requirements Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health-check-endpoint-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health Check Endpoint Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registration-metadata-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registration Metadata Section
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-schema-definition-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event Schema Definition Format
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registration-protocol-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registration Protocol Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registration Protocol Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module_registration_request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MODULE_REGISTRATION_REQUEST
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module_registration_response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MODULE_REGISTRATION_RESPONSE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module_registration_update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MODULE_REGISTRATION_UPDATE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module_deregistration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MODULE_DEREGISTRATION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registration_heartbeat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REGISTRATION_HEARTBEAT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-eps-is-used-instead-of-mrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When EPS is Used Instead of MRS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registration-error-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registration Error Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-registration-error-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Registration Error Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registration-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registration Lifecycle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registration Lifecycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-lifecycle-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Lifecycle Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lifecycle-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Override
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-required-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal Required Registration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Implementations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example Implementations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#emailalerter-module-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EmailAlerter Module Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-monitor-module-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Monitor Module Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-processor-module-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Processor Module Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="module-registration-specification-mrs">Module Registration Specification (MRS)</h1>
+<p>This is the canonical module and capability registration specification used by RUNE to build a registry for routing, discovery, and policy.</p>
+<p>For operational context, see <a href="../lifecycle/">Lifecycle model</a>.</p>
+<h2 id="overview">Overview</h2>
+<p>This document defines the standardized data format for module registration and capability declaration within the RUNE platform. This format enables dynamic module discovery and eliminates hardcoded assumptions about module capabilities.</p>
+<p>Unlike the Runtime Communication Specification (RCS) which prioritizes lightweight messaging for high-frequency operations, the MRS is designed for comprehensive capability declaration during module startup and topology changes. For error handling and recovery messaging, see the Error Protocol Specification (EPS).</p>
+<p><strong>Key Principles:</strong></p>
+<ul>
+<li><strong>Dynamic Discovery</strong>: Zero hardcoded module types or capabilities</li>
+<li><strong>Self-Description</strong>: Modules completely define their own identity and services</li>
+<li><strong>Schema Declaration</strong>: Event types include full schema definitions</li>
+<li><strong>Separation of Concerns</strong>: Registration data separate from runtime messaging</li>
+</ul>
+<h2 id="protocol-architecture-context">Protocol Architecture Context</h2>
+<p>The RUNE platform operates on a three-protocol architecture that ensures separation of concerns and optimal performance:</p>
+<table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Purpose</th>
+<th>Managed By</th>
+<th>Frequency</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MRS</strong></td>
+<td>Module registration and capability declaration</td>
+<td>Orchestrator</td>
+<td>Low (startup/shutdown)</td>
+<td>Module lifecycle management</td>
+</tr>
+<tr>
+<td><strong>RCS</strong></td>
+<td>Runtime operational communication</td>
+<td>Mediator</td>
+<td>High (continuous)</td>
+<td>Normal module-to-module messaging</td>
+</tr>
+<tr>
+<td><strong>EPS</strong></td>
+<td>Error handling and recovery messaging</td>
+<td>Mediator + ErrorHandler</td>
+<td>Variable (exception-based)</td>
+<td>Error responses and recovery</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Architecture Integration:</strong></p>
+<ul>
+<li><strong>Orchestrator</strong>: Maintains module registry built from MRS registrations</li>
+<li><strong>Mediator</strong>: Uses Orchestrator's registry for RCS message routing decisions</li>
+<li><strong>ErrorHandler</strong>: Processes EPS messages for registration errors and recovery</li>
+</ul>
+<p><strong>Communication Flow:</strong></p>
+<pre class="mermaid"><code>flowchart TD
+    M[Module] --&gt;|MRS Registration| O[Orchestrator]
+    O --&gt;|Updates Registry| O
+    O --&gt;|Registry Data| ME[Mediator]
+    M --&gt;|RCS Messages| ME
+    ME --&gt;|Routes Using Registry| M2[Other Modules]
+    ME --&gt;|Registration Errors| EPS{EPS Format}
+    EPS --&gt;|Error Processing| EH[ErrorHandler]</code></pre>
+<h2 id="when-to-use-this-specification">When to Use This Specification</h2>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Specification</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Module Registration</strong></td>
+<td><strong>MRS</strong></td>
+<td>Declaring module capabilities and subscribing to events</td>
+</tr>
+<tr>
+<td><strong>Capability Updates</strong></td>
+<td><strong>MRS</strong></td>
+<td>Updating module event schemas or dependencies</td>
+</tr>
+<tr>
+<td><strong>Module Deregistration</strong></td>
+<td><strong>MRS</strong></td>
+<td>Graceful shutdown and capability removal</td>
+</tr>
+<tr>
+<td><strong>Registration Errors</strong></td>
+<td><strong>EPS</strong></td>
+<td>Registration validation failures, dependency errors</td>
+</tr>
+<tr>
+<td><strong>Module-to-Module Communication</strong></td>
+<td><strong>RCS</strong></td>
+<td>Runtime operational messaging between registered modules</td>
+</tr>
+<tr>
+<td><strong>Request-Response Patterns</strong></td>
+<td><strong>RCS</strong></td>
+<td>Synchronous and asynchronous communication workflows</td>
+</tr>
+<tr>
+<td><strong>Event Publishing/Subscribing</strong></td>
+<td><strong>RCS</strong></td>
+<td>Broadcasting events to interested modules</td>
+</tr>
+<tr>
+<td><strong>Health Check Responses</strong></td>
+<td><strong>RCS</strong></td>
+<td>Responding to orchestrator health checks</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Decision Rule:</strong> Use MRS only for registration and capability management. Use RCS for all operational communication after modules are registered. Use EPS for all error conditions during registration or runtime.</p>
+<p><strong>Cross-Protocol References:</strong></p>
+<ul>
+<li>See <a href="../rcs/">Runtime Communication Specification (RCS)</a> for operational messaging</li>
+<li>See <a href="../eps/">Error Protocol Specification (EPS)</a> for error handling and recovery messaging</li>
+</ul>
+<h2 id="registration-message-structure">Registration Message Structure</h2>
+<h3 id="complete-format-example">Complete Format Example</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;module_identity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;module_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EmailAlerter_Primary&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EmailNotificationService&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;alerting_service&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.1.3&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Advanced email notification service with templating and retry logic&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;registration_timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T17:47:53.123Z&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;capability_declaration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;provides_events&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EMAIL_SENT&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Published when email is successfully delivered&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;data_schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;recipient&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;subject&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;delivery_timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;date-time&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;smtp_response&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;message_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;recipient&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;delivery_timestamp&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;example_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;msg_550e8400e29b41d4&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;recipient&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin@example.com&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;subject&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System Alert: High CPU Usage&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;delivery_timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T17:47:53.456Z&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;smtp_response&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;250 2.0.0 Ok: queued as 12345&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.2&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;backward_compatible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EMAIL_DELIVERY_FAILED&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Published when email delivery fails after all retries&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;data_schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;recipient&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;error_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;error_message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;retry_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;final_attempt_timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;date-time&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;message_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;recipient&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;error_code&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;retry_count&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;example_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;msg_550e8400e29b41d4&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;recipient&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;invalid@nonexistent.com&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;error_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;550&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;error_message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Recipient address rejected: User unknown&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;retry_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;final_attempt_timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T17:50:53.789Z&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;backward_compatible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;consumes_events&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;SEND_EMAIL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;SEND_NOTIFICATION&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;RENDER_EMAIL_TEMPLATE&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;service_metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;smtp_server&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;smtp.company.com&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;max_concurrent_sends&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;retry_attempts&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;supported_formats&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;html&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;multipart&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;template_engine&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jinja2&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;authentication_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;oauth2&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;encryption_support&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;tls&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ssl&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;rate_limit_per_hour&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;technical_requirements&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;supported_protocols&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;rcs_v2&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;dependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;module_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConfigurationManager&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;version_requirement&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&gt;=2.0.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;criticality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;required&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;module_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LoggingModule&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;version_requirement&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&gt;=1.5.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;criticality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;optional&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;resource_requirements&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;min_memory_mb&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;max_memory_mb&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;cpu_cores&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;disk_space_mb&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;network_bandwidth_mbps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;instance_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;health_check_endpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EMAIL_SERVICE_HEALTH_CHECK&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;expected_response&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EMAIL_SERVICE_HEALTH_RESPONSE&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;timeout_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;check_interval_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;configuration_schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;smtp_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;smtp_port&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">65535</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;from_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;smtp_host&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;smtp_port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;from_address&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;registration_metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;registration_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;550e8400-e29b-41d4-a716-446655440000&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;registration_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;expires_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T18:47:53.123Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;update_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;replace&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;registration_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;module_startup&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;previous_registration_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;orchestrator_acknowledgment_required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="field-specifications">Field Specifications</h2>
+<h3 id="module-identity-section">Module Identity Section</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>module_name</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Unique identifier for this module instance</td>
+</tr>
+<tr>
+<td><code>module_class</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Module implementation class (e.g., "EmailNotificationService")</td>
+</tr>
+<tr>
+<td><code>module_type</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Functional category (e.g., "alerting_service")</td>
+</tr>
+<tr>
+<td><code>module_version</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Semantic version of the module implementation</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Human-readable description of module capabilities</td>
+</tr>
+<tr>
+<td><code>registration_timestamp</code></td>
+<td>RFC 3339 String</td>
+<td><strong>Yes</strong></td>
+<td>When this registration was created in UTC (YYYY-MM-DDTHH:MM:SS.sssZ)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="capability-declaration-section">Capability Declaration Section</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>provides_events</code></td>
+<td>Array[Object]</td>
+<td><strong>Yes</strong></td>
+<td>Complete list of events this module can publish</td>
+</tr>
+<tr>
+<td><code>consumes_events</code></td>
+<td>Array[String]</td>
+<td><strong>Yes</strong></td>
+<td>List of event types this module subscribes to</td>
+</tr>
+<tr>
+<td><code>service_metadata</code></td>
+<td>Object</td>
+<td>No</td>
+<td>Module-specific capabilities and configuration information</td>
+</tr>
+</tbody>
+</table>
+<h4 id="event-definition-object-within-provides_events">Event Definition Object (within <code>provides_events</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>event_type</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Unique identifier for this event type</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Human-readable description of when this event is published</td>
+</tr>
+<tr>
+<td><code>data_schema</code></td>
+<td>Object</td>
+<td><strong>Yes</strong></td>
+<td>JSON Schema definition for the event payload</td>
+</tr>
+<tr>
+<td><code>example_data</code></td>
+<td>Object</td>
+<td>No</td>
+<td>Sample payload demonstrating the schema</td>
+</tr>
+<tr>
+<td><code>schema_version</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Version of this event's schema for evolution tracking</td>
+</tr>
+<tr>
+<td><code>backward_compatible</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether this version maintains backward compatibility</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Event Type Naming Convention:</strong></p>
+<ul>
+<li>Use past tense for completed actions: <code>EMAIL_SENT</code>, <code>DATA_PROCESSED</code>, <code>USER_AUTHENTICATED</code></li>
+<li>Use present tense for commands/requests: <code>SEND_EMAIL</code>, <code>PROCESS_DATA</code>, <code>AUTHENTICATE_USER</code></li>
+<li>Use noun phrases for status: <code>SYSTEM_STATUS</code>, <code>HEALTH_CHECK</code></li>
+</ul>
+<h3 id="technical-requirements-section">Technical Requirements Section</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>supported_protocols</code></td>
+<td>Array[String]</td>
+<td><strong>Yes</strong></td>
+<td>Communication protocols this module supports (e.g., "rcs_v2")</td>
+</tr>
+<tr>
+<td><code>dependencies</code></td>
+<td>Array[Object]</td>
+<td>No</td>
+<td>Other modules this module requires to function</td>
+</tr>
+<tr>
+<td><code>resource_requirements</code></td>
+<td>Object</td>
+<td>No</td>
+<td>Hardware and resource needs for this module</td>
+</tr>
+<tr>
+<td><code>health_check_endpoint</code></td>
+<td>Object</td>
+<td>No</td>
+<td>How the orchestrator can verify module health</td>
+</tr>
+<tr>
+<td><code>configuration_schema</code></td>
+<td>Object</td>
+<td>No</td>
+<td>JSON Schema for module configuration requirements</td>
+</tr>
+</tbody>
+</table>
+<h4 id="dependency-object">Dependency Object</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>module_name</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Name of the required module</td>
+</tr>
+<tr>
+<td><code>version_requirement</code></td>
+<td>String</td>
+<td>No</td>
+<td>Semantic version requirement (e.g., "&gt;=2.0.0")</td>
+</tr>
+<tr>
+<td><code>criticality</code></td>
+<td>Enum String</td>
+<td><strong>Yes</strong></td>
+<td>"required" or "optional"</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-requirements-object">Resource Requirements Object</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>min_memory_mb</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Minimum memory requirement in megabytes</td>
+</tr>
+<tr>
+<td><code>max_memory_mb</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Maximum memory usage in megabytes</td>
+</tr>
+<tr>
+<td><code>cpu_cores</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Number of CPU cores needed</td>
+</tr>
+<tr>
+<td><code>disk_space_mb</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Persistent storage requirement in MB</td>
+</tr>
+<tr>
+<td><code>network_bandwidth_mbps</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Network bandwidth requirement in Mbps</td>
+</tr>
+<tr>
+<td><code>instance_count</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Number of module instances (default: 1)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="health-check-endpoint-object">Health Check Endpoint Object</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>event_type</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Event to send for health check</td>
+</tr>
+<tr>
+<td><code>expected_response</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Expected response event type</td>
+</tr>
+<tr>
+<td><code>timeout_ms</code></td>
+<td>Integer</td>
+<td><strong>Yes</strong></td>
+<td>Timeout for health check response</td>
+</tr>
+<tr>
+<td><code>check_interval_seconds</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Recommended interval between health checks</td>
+</tr>
+</tbody>
+</table>
+<h3 id="registration-metadata-section">Registration Metadata Section</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>registration_id</code></td>
+<td>UUID String</td>
+<td><strong>Yes</strong></td>
+<td>Unique identifier for this registration</td>
+</tr>
+<tr>
+<td><code>registration_version</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Version of the MRS protocol used (current: "1.0")</td>
+</tr>
+<tr>
+<td><code>expires_at</code></td>
+<td>RFC 3339 String</td>
+<td>No</td>
+<td>When this registration expires and needs renewal (default: 1 hour)</td>
+</tr>
+<tr>
+<td><code>update_mode</code></td>
+<td>Enum String</td>
+<td><strong>Yes</strong></td>
+<td>How to handle updates: <code>replace</code>, <code>merge</code>, <code>append</code></td>
+</tr>
+<tr>
+<td><code>registration_source</code></td>
+<td>String</td>
+<td>No</td>
+<td>What triggered this registration: <code>module_startup</code>, <code>capability_update</code></td>
+</tr>
+<tr>
+<td><code>previous_registration_id</code></td>
+<td>UUID String</td>
+<td>No</td>
+<td>Links to previous registration if this is an update</td>
+</tr>
+<tr>
+<td><code>orchestrator_acknowledgment_required</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether module needs confirmation of successful registration (default: true)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="event-schema-definition-format">Event Schema Definition Format</h2>
+<p>All events declared in <code>provides_events</code> must follow this standardized schema definition format:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CUSTOM_EVENT_NAME&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Clear description of when and why this event is published&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data_schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string|number|boolean|object|array&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Purpose of this field&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;email|date-time|uri|etc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;option1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;option2&quot;</span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;field1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;field2&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;example_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;field_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;example_value&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;backward_compatible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Schema Definition Requirements:</strong></p>
+<ul>
+<li>Use JSON Schema Draft 7 format</li>
+<li>Include <code>description</code> for all fields</li>
+<li>Specify <code>required</code> fields array</li>
+<li>Provide realistic <code>example_data</code></li>
+<li>Use semantic versioning for <code>schema_version</code></li>
+</ul>
+<h2 id="registration-protocol-events">Registration Protocol Events</h2>
+<p>The registration process uses these standardized event types:</p>
+<h3 id="module_registration_request">MODULE_REGISTRATION_REQUEST</h3>
+<p>Sent by modules to register their capabilities with the orchestrator.</p>
+<p><strong>Payload Schema:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;registration_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Complete module registration as defined in this specification&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;registration_data&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="module_registration_response">MODULE_REGISTRATION_RESPONSE</h3>
+<p>Sent by orchestrator to acknowledge successful registration or report errors.</p>
+<p><strong>Payload Schema:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;registration_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;assigned_routing_tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;validation_errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;registration_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;message&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="module_registration_update">MODULE_REGISTRATION_UPDATE</h3>
+<p>Sent by modules to update their capabilities without full re-registration.</p>
+<p><strong>Payload Schema:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;registration_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;update_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;add_events&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;remove_events&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;update_metadata&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;changes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;registration_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;update_type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;changes&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="module_deregistration">MODULE_DEREGISTRATION</h3>
+<p>Sent by modules when shutting down or by orchestrator to remove failed modules.</p>
+<p><strong>Payload Schema:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;registration_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;module_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;graceful_shutdown&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boolean&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;registration_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;module_name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;reason&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="registration_heartbeat">REGISTRATION_HEARTBEAT</h3>
+<p>Periodic signal to maintain registration and report health status.</p>
+<p><strong>Payload Schema:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;registration_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;module_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;health_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;healthy&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;degraded&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;critical&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;performance_metrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;last_activity_timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;date-time&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;registration_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;module_name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;health_status&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="error-handling">Error Handling</h2>
+<p><strong>Important Note:</strong> MRS does not define error message formats. All error responses during registration use the Error Protocol Specification (EPS) format.</p>
+<p>When MRS registration processing encounters errors, the response follows EPS format instead of MRS format. Common registration error scenarios include:</p>
+<h3 id="when-eps-is-used-instead-of-mrs">When EPS is Used Instead of MRS</h3>
+<table>
+<thead>
+<tr>
+<th>Error Condition</th>
+<th>Protocol Used</th>
+<th>Handling Component</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registration JSON parse failure</td>
+<td><strong>EPS</strong></td>
+<td>Orchestrator</td>
+</tr>
+<tr>
+<td>Schema validation failure</td>
+<td><strong>EPS</strong></td>
+<td>Orchestrator</td>
+</tr>
+<tr>
+<td>Duplicate module name</td>
+<td><strong>EPS</strong></td>
+<td>Orchestrator</td>
+</tr>
+<tr>
+<td>Dependency not found</td>
+<td><strong>EPS</strong></td>
+<td>Orchestrator</td>
+</tr>
+<tr>
+<td>Resource requirements exceeded</td>
+<td><strong>EPS</strong></td>
+<td>Orchestrator</td>
+</tr>
+<tr>
+<td>Event type conflict</td>
+<td><strong>EPS</strong></td>
+<td>Orchestrator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="registration-error-flow">Registration Error Flow</h3>
+<pre class="mermaid"><code>flowchart TD
+    M[Module] --&gt;|MRS Registration| O[Orchestrator]
+    O --&gt;|Validation Error| EPS{Generate EPS Error}
+    O --&gt;|Valid Registration| REG[Update Registry]
+    EPS --&gt;|EPS Format| EH[ErrorHandler]
+    EH --&gt;|Registration Failed| M
+    REG --&gt;|Success Response| M</code></pre>
+<h3 id="common-registration-error-codes">Common Registration Error Codes</h3>
+<table>
+<thead>
+<tr>
+<th>EPS Error Code</th>
+<th>MRS Context</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-32200</td>
+<td>Schema validation failed</td>
+<td>Event schema doesn't comply with JSON Schema Draft 7</td>
+</tr>
+<tr>
+<td>-32201</td>
+<td>Required field missing</td>
+<td>Missing required MRS fields</td>
+</tr>
+<tr>
+<td>-32202</td>
+<td>Field type mismatch</td>
+<td>Invalid data types in registration</td>
+</tr>
+<tr>
+<td>-32203</td>
+<td>Field value out of range</td>
+<td>Resource requirements exceed limits</td>
+</tr>
+<tr>
+<td>-32204</td>
+<td>Invalid field format</td>
+<td>Malformed module name or version</td>
+</tr>
+<tr>
+<td>-32205</td>
+<td>Duplicate module name</td>
+<td>Module name already registered</td>
+</tr>
+<tr>
+<td>-32206</td>
+<td>Dependency not found</td>
+<td>Required dependency module not available</td>
+</tr>
+<tr>
+<td>-32207</td>
+<td>Version conflict</td>
+<td>Module version conflicts with existing registration</td>
+</tr>
+<tr>
+<td>-32208</td>
+<td>Event type conflict</td>
+<td>Event type already published by another module</td>
+</tr>
+</tbody>
+</table>
+<p><strong>For complete error handling specifications, see:</strong> <a href="../eps/">Error Protocol Specification (EPS)</a></p>
+<h2 id="registration-lifecycle">Registration Lifecycle</h2>
+<p>Module registrations follow a configurable lifecycle pattern:</p>
+<h3 id="default-lifecycle-settings">Default Lifecycle Settings</h3>
+<ul>
+<li><strong>Registration Expiry</strong>: 1 hour (3600 seconds) from registration timestamp</li>
+<li><strong>Heartbeat Interval</strong>: Every 30 minutes (1800 seconds)</li>
+<li><strong>Grace Period</strong>: 5 minutes after expiry before forced deregistration</li>
+</ul>
+<h3 id="lifecycle-events">Lifecycle Events</h3>
+<ol>
+<li><strong>Initial Registration</strong>: Module sends <code>MODULE_REGISTRATION_REQUEST</code></li>
+<li><strong>Acknowledgment</strong>: Orchestrator responds with <code>MODULE_REGISTRATION_RESPONSE</code></li>
+<li><strong>Periodic Heartbeats</strong>: Module sends <code>REGISTRATION_HEARTBEAT</code> every 30 minutes</li>
+<li><strong>Registration Renewal</strong>: Automatic renewal on heartbeat or manual renewal</li>
+<li><strong>Graceful Deregistration</strong>: Module sends <code>MODULE_DEREGISTRATION</code> on shutdown</li>
+<li><strong>Forced Deregistration</strong>: Orchestrator removes unresponsive modules</li>
+</ol>
+<h3 id="configuration-override">Configuration Override</h3>
+<p>External configuration can modify these defaults:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;registration_lifecycle&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;default_expiry_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3600</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;heartbeat_interval_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1800</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;grace_period_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;max_missed_heartbeats&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="minimal-required-registration">Minimal Required Registration</h2>
+<p>The absolute minimum valid registration contains only required fields:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;module_identity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;module_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SimpleLogger&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BasicFileLogger&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;logging_service&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Basic file-based logging service&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;registration_timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T17:47:53.123Z&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;capability_declaration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;provides_events&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LOG_WRITTEN&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Published when log entry is written to file&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;data_schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;log_level&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;date-time&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;log_level&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;message&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;timestamp&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;consumes_events&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;LOG_MESSAGE&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;technical_requirements&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;supported_protocols&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;rcs_v2&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;registration_metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;registration_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;550e8400-e29b-41d4-a716-446655440001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;registration_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;update_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;replace&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="example-implementations">Example Implementations</h2>
+<h3 id="emailalerter-module-registration">EmailAlerter Module Registration</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;module_identity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;module_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EmailAlerter_Production&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EnterpriseEmailService&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;alerting_service&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.2.1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Enterprise-grade email alerting with templates, batching, and advanced routing&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;registration_timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T17:47:53.123Z&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;capability_declaration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;provides_events&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EMAIL_BATCH_SENT&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Published when a batch of emails is successfully sent&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;data_schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;batch_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;email_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;recipients&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;template_used&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;send_duration_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;success_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;failure_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;batch_id&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;email_count&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;success_count&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;failure_count&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;backward_compatible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EMAIL_TEMPLATE_RENDERED&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Published when email template is successfully rendered with data&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;data_schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;template_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;rendered_subject&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;rendered_body&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;data_variables&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;render_time_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;template_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rendered_subject&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rendered_body&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;backward_compatible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;consumes_events&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;SEND_EMAIL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;SEND_BATCH_NOTIFICATION&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;RENDER_EMAIL_TEMPLATE&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;UPDATE_EMAIL_CONFIG&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;service_metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;max_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;template_formats&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;html&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;markdown&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;supported_attachments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pdf&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;jpg&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;png&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;rate_limits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;emails_per_minute&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;emails_per_hour&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;smtp_pools&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;primary&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;backup&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;bulk&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;encryption_methods&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;tls_1_2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;tls_1_3&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;bounce_handling&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;delivery_tracking&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;technical_requirements&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;supported_protocols&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;rcs_v2&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;dependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;module_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConfigurationManager&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;version_requirement&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&gt;=3.0.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;criticality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;required&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;module_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TemplateEngine&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;version_requirement&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&gt;=2.1.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;criticality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;required&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;module_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LoggingModule&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;version_requirement&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&gt;=1.8.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;criticality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;optional&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;resource_requirements&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;min_memory_mb&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;max_memory_mb&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2048</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;cpu_cores&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;disk_space_mb&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;network_bandwidth_mbps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;instance_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;health_check_endpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EMAIL_SERVICE_PING&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;expected_response&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EMAIL_SERVICE_PONG&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;timeout_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;check_interval_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;registration_metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;registration_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;550e8400-e29b-41d4-a716-446655440100&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;registration_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;update_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;replace&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;registration_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;module_startup&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="system-monitor-module-registration">System Monitor Module Registration</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;module_identity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;module_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SystemMonitor_Core&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AdvancedSystemMonitor&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;monitoring_service&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4.1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Comprehensive system monitoring with predictive analytics and automated remediation&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;registration_timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T17:47:53.234Z&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;capability_declaration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;provides_events&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SYSTEM_METRICS_COLLECTED&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Published every monitoring cycle with current system metrics&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;data_schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;collection_timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;date-time&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;cpu_usage_percent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;memory_usage_percent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;disk_usage_percent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;network_io_mbps&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;active_processes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;load_average&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;uptime_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;collection_timestamp&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;cpu_usage_percent&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;memory_usage_percent&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;backward_compatible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SYSTEM_ALERT_TRIGGERED&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Published when system metrics exceed defined thresholds&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;data_schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;alert_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;alert_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;memory&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;disk&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;network&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;process&quot;</span><span class="p">]</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;low&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;medium&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;high&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;critical&quot;</span><span class="p">]</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;current_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;threshold_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;trending_direction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;increasing&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;decreasing&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;stable&quot;</span><span class="p">]</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;recommended_action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;auto_remediation_available&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boolean&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;alert_id&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;alert_type&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;severity&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;current_value&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;threshold_value&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;backward_compatible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;consumes_events&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;SET_MONITORING_THRESHOLD&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;REQUEST_SYSTEM_REPORT&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;EXECUTE_REMEDIATION&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;UPDATE_MONITORING_CONFIG&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;service_metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;monitoring_interval_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;supported_metrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;memory&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;disk&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;network&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;processes&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;services&quot;</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;threshold_types&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;absolute&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;percentage&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;rate_of_change&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;predictive&quot;</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;remediation_capabilities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;restart_service&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;clear_cache&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;scale_resources&quot;</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;historical_retention_days&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;real_time_dashboard&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;api_endpoints&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/metrics&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/alerts&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/health&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;technical_requirements&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;supported_protocols&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;rcs_v2&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;dependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;module_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LoggingModule&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;version_requirement&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&gt;=1.5.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;criticality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;optional&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;resource_requirements&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;min_memory_mb&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;max_memory_mb&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;cpu_cores&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;disk_space_mb&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;network_bandwidth_mbps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;instance_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;health_check_endpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MONITOR_HEALTH_CHECK&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;expected_response&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MONITOR_HEALTH_STATUS&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;timeout_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;check_interval_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;registration_metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;registration_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;550e8400-e29b-41d4-a716-446655440200&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;registration_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;update_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;merge&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;registration_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;module_startup&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="data-processor-module-registration">Data Processor Module Registration</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;module_identity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;module_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DataProcessor_Analytics&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MLDataProcessor&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data_processing_service&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.5.2&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Machine learning powered data processing with real-time analytics and pattern detection&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;registration_timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T17:47:53.345Z&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;capability_declaration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;provides_events&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DATA_PROCESSED&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Published when data processing job finishes successfully&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;data_schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;job_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;dataset_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;records_processed&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;processing_time_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;output_location&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uri&quot;</span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;data_quality_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;anomalies_detected&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;patterns_found&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">}},</span>
+<span class="w">            </span><span class="nt">&quot;confidence_scores&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;job_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;dataset_name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;records_processed&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;processing_time_ms&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.3&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;backward_compatible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ANOMALY_DETECTED&quot;</span><span class="p">,</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025-2026 Richard Majewski. Licensed under <a href="/legal/LICENSE/">MPL-2.0</a>.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../assets/javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>

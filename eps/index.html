@@ -1,0 +1,4350 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://rune.entropy.quest/eps/">
+      
+      
+        <link rel="prev" href="../rcs/">
+      
+      
+        <link rel="next" href="../mrs/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/rune_favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Error Protocol (EPS) - RUNE Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#error-protocol-specification-eps" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="RUNE Framework" class="md-header__button md-logo" aria-label="RUNE Framework" data-md-component="logo">
+      
+  <img src="../assets/images/rune.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RUNE Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Error Protocol (EPS)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/UglyEgg/RUNE" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../why_rune/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Why RUNE
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../quick_start/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../architecture/" class="md-tabs__link">
+          
+  
+  
+  Concepts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../rcs/" class="md-tabs__link">
+          
+  
+  
+  Protocols
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../plugin_dev_guide/" class="md-tabs__link">
+          
+  
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../RUNE_Complete_Refernce/" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../roadmap/" class="md-tabs__link">
+          
+  
+  
+  Project
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../legal/CLA/" class="md-tabs__link">
+          
+  
+  
+  Legal
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="RUNE Framework" class="md-nav__button md-logo" aria-label="RUNE Framework" data-md-component="logo">
+      
+  <img src="../assets/images/rune.svg" alt="logo">
+
+    </a>
+    RUNE Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/UglyEgg/RUNE" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why_rune/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Why RUNE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick_start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mediation_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mediation Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Action Lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Design_Principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Principles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../positioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Positioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocols
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocols
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rcs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime Communication (RCS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Protocol (EPS)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Protocol (EPS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocol-architecture-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocol Architecture Context
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-use-this-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use This Specification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-message-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Message Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Message Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complete-format-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Format Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Specifications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Field Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#message-metadata-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Metadata Section
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing Section
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-payload-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Payload Section
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observability-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observability Section
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-rpc-20-error-data-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON-RPC 2.0 Error Data Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JSON-RPC 2.0 Error Data Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-rpc-error-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON-RPC Error Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-rpc-error-data-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON-RPC Error Data Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard-error-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Error Codes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Standard Error Codes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-rpc-20-base-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON-RPC 2.0 Base Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rune-custom-error-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RUNE Custom Error Codes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RUNE Custom Error Codes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#communication-errors-32100-to-32199" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Communication Errors (-32100 to -32199)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-errors-32200-to-32299" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation Errors (-32200 to -32299)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-errors-32300-to-32399" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Errors (-32300 to -32399)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-errors-32400-to-32499" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Errors (-32400 to -32499)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-logic-errors-32500-to-32599" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business Logic Errors (-32500 to -32599)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-classification-and-severity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Classification and Severity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Classification and Severity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-classification-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Classification Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#severity-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Severity Levels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery-guidance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery Guidance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-flow-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Flow Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Flow Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-detection-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Detection Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-routing-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Routing Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recovery-and-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery and Escalation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recovery and Escalation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic-recovery-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic Recovery Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escalation-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalation Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-error-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Error Messages
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example Error Messages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-validation-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Validation Error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-not-found-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Not Found Error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critical-system-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical System Error
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handler-module-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handler Module Integration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handler Module Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#errorhandler-module-registration-mrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ErrorHandler Module Registration (MRS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#errorhandler-processing-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ErrorHandler Processing Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-required-error-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal Required Error Message
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Guidelines
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation Guidelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-error-response-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Error Response Template
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-classification-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Classification Logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#safety-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety Mechanisms
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Safety Mechanisms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#infinite-loop-prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Infinite Loop Prevention
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-processing-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Processing Limits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critical-error-bypass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical Error Bypass
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mrs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Registration (MRS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bpcs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bash Plugin Communication (BPCS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Development
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin_dev_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin Development Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bash_library_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bash Library Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../STYLE_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Style Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RUNE_Complete_Refernce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../json_appendix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON Appendix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diagrams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagrams
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../legal/CLA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributor License Agreement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../legal/LICENSE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License (MPL-2.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../legal/NOTICE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../legal/PATENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocol-architecture-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocol Architecture Context
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-use-this-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use This Specification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-message-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Message Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Message Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complete-format-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Format Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Specifications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Field Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#message-metadata-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Metadata Section
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing Section
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-payload-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Payload Section
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observability-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observability Section
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-rpc-20-error-data-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON-RPC 2.0 Error Data Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JSON-RPC 2.0 Error Data Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-rpc-error-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON-RPC Error Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-rpc-error-data-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON-RPC Error Data Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard-error-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Error Codes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Standard Error Codes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-rpc-20-base-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON-RPC 2.0 Base Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rune-custom-error-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RUNE Custom Error Codes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RUNE Custom Error Codes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#communication-errors-32100-to-32199" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Communication Errors (-32100 to -32199)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-errors-32200-to-32299" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation Errors (-32200 to -32299)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-errors-32300-to-32399" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Errors (-32300 to -32399)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-errors-32400-to-32499" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Errors (-32400 to -32499)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-logic-errors-32500-to-32599" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business Logic Errors (-32500 to -32599)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-classification-and-severity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Classification and Severity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Classification and Severity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-classification-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Classification Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#severity-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Severity Levels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery-guidance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery Guidance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-flow-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Flow Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Flow Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-detection-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Detection Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-routing-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Routing Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recovery-and-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery and Escalation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recovery and Escalation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic-recovery-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic Recovery Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escalation-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalation Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-error-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Error Messages
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example Error Messages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-validation-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Validation Error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-not-found-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Not Found Error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critical-system-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical System Error
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handler-module-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handler Module Integration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handler Module Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#errorhandler-module-registration-mrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ErrorHandler Module Registration (MRS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#errorhandler-processing-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ErrorHandler Processing Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-required-error-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal Required Error Message
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Guidelines
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation Guidelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-error-response-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Error Response Template
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-classification-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Classification Logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#safety-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety Mechanisms
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Safety Mechanisms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#infinite-loop-prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Infinite Loop Prevention
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-processing-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Processing Limits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critical-error-bypass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical Error Bypass
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="error-protocol-specification-eps">Error Protocol Specification (EPS)</h1>
+<p>This is the canonical error envelope used by RUNE when failures must propagate through the platform and be handled consistently.</p>
+<p>For plugin level errors, see <a href="../bpcs/">BPCS</a>.</p>
+<h2 id="overview">Overview</h2>
+<p>he Error Protocol Specification (EPS) defines the standardized data format for all error communication within the RUNE platform. All error reporting-whether originating from a module or a plugin-is strictly routed through the RUNE Mediator Module (LMM) to the ErrorHandler module. No direct error communication between modules, or between modules and plugins, is permitted.</p>
+<p>EPS ensures consistent error handling, reporting, and recovery across all modules and plugins while maintaining the platform's architecture of strict mediation and loose coupling.</p>
+<p><strong>All errors, whether originating from a core module or a plugin (e.g. Bash plugin), are reported via standardized EPS messages and routed exclusively through the LMM. Plugins never send error messages directly to modules or error handlers.</strong></p>
+<!-- /conflunce:info -->
+
+<p><strong>Key Principles:</strong></p>
+<ul>
+<li><strong>Centralized Error Routing</strong>: All errors flow through the Mediator to registered ErrorHandler modules</li>
+<li><strong>Comprehensive Context</strong>: Error messages include full diagnostic information for effective troubleshooting</li>
+<li><strong>Recovery Guidance</strong>: Errors include actionable recovery recommendations</li>
+<li><strong>System Stability</strong>: Built-in safeguards prevent error handling loops and cascading failures</li>
+</ul>
+<h2 id="protocol-architecture-context">Protocol Architecture Context</h2>
+<p>The RUNE platform operates on a three-protocol architecture:</p>
+<table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Purpose</th>
+<th>Managed By</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MRS</strong></td>
+<td>Module registration and capability declaration</td>
+<td>Orchestrator</td>
+<td>Low (startup/shutdown)</td>
+</tr>
+<tr>
+<td><strong>RCS</strong></td>
+<td>Runtime operational communication</td>
+<td>Mediator</td>
+<td>High (continuous)</td>
+</tr>
+<tr>
+<td><strong>EPS</strong></td>
+<td>Error handling and recovery messaging</td>
+<td>Mediator + ErrorHandler</td>
+<td>Variable (exception-based)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Integration Points:</strong></p>
+<ul>
+<li><strong>Orchestrator</strong>: Maintains module registry used by Mediator for error routing decisions</li>
+<li><strong>Mediator</strong>: Routes all error messages and enforces communication protocols</li>
+<li><strong>ErrorHandler Module</strong>: Processes errors, manages recovery, and handles escalation</li>
+</ul>
+<h2 id="when-to-use-this-specification">When to Use This Specification</h2>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Protocol</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>JSON Parse Failures</strong></td>
+<td><strong>EPS</strong></td>
+<td>Malformed message structure errors</td>
+</tr>
+<tr>
+<td><strong>Schema Validation Errors</strong></td>
+<td><strong>EPS</strong></td>
+<td>RCS/MRS message validation failures</td>
+</tr>
+<tr>
+<td><strong>Module Not Found</strong></td>
+<td><strong>EPS</strong></td>
+<td>Routing failures for unregistered modules</td>
+</tr>
+<tr>
+<td><strong>Timeout Errors</strong></td>
+<td><strong>EPS</strong></td>
+<td>Message delivery or response timeouts</td>
+</tr>
+<tr>
+<td><strong>Authentication/Authorization Failures</strong></td>
+<td><strong>EPS</strong></td>
+<td>Security-related access errors</td>
+</tr>
+<tr>
+<td><strong>Business Logic Errors</strong></td>
+<td><strong>EPS</strong></td>
+<td>Module-specific operational failures</td>
+</tr>
+<tr>
+<td><strong>System Resource Errors</strong></td>
+<td><strong>EPS</strong></td>
+<td>Memory, disk, network, or CPU failures</td>
+</tr>
+<tr>
+<td><strong>Module Registration</strong></td>
+<td><strong>MRS</strong></td>
+<td>Declaring capabilities and subscribing to events</td>
+</tr>
+<tr>
+<td><strong>Operational Communication</strong></td>
+<td><strong>RCS</strong></td>
+<td>Normal module-to-module messaging</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Decision Rule:</strong> Use EPS whenever any component detects an error condition that prevents normal message processing or operation completion.</p>
+<h2 id="error-message-structure">Error Message Structure</h2>
+<h3 id="complete-format-example">Complete Format Example</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;message_metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;550e8400-e29b-41d4-a716-446655440000&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;correlation_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;original-request-correlation-id&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;parent_message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;original-request-message-id&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T16:54:24.123Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;priority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;high&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;routing&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EPS_ERROR_RESPONSE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;event_category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error_handling&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;source_module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mediator&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;target_module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ErrorHandler_Core&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;original_source_module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DataProcessor&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;routing_tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;validation_error&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;schema_failure&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;error_payload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;content_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;size_bytes&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;error_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-32602</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid params&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;payload.data.email_address&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid email format provided&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T16:54:24.123Z&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;validation_errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;Email address must contain @ symbol&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Domain portion must contain at least one dot&quot;</span>
+<span class="w">          </span><span class="p">],</span>
+<span class="w">          </span><span class="nt">&quot;original_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;invalid-email-format&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;expected_format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user@domain.com&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;original-request-message-id&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;error_context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;error_classification&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;validation_error&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;medium&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;recoverable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;retry_recommended&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;escalation_required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;recovery_actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;Validate email format before sending&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Use email validation library&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Provide user-friendly error message&quot;</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;related_errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">      </span><span class="nt">&quot;system_impact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;single_request&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;module_health_impact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;none&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;observability&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;trace_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error-trace-001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;span_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;validation-error-span&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;error_fingerprint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;schema_validation_email_format_001&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="field-specifications">Field Specifications</h2>
+<h3 id="message-metadata-section">Message Metadata Section</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>version</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>EPS protocol version for backward compatibility (current: "1.0")</td>
+</tr>
+<tr>
+<td><code>message_id</code></td>
+<td>UUID String</td>
+<td><strong>Yes</strong></td>
+<td>Unique identifier for this error message</td>
+</tr>
+<tr>
+<td><code>correlation_id</code></td>
+<td>UUID String</td>
+<td><strong>Yes</strong></td>
+<td>Links error to original request that caused the failure</td>
+</tr>
+<tr>
+<td><code>parent_message_id</code></td>
+<td>UUID String</td>
+<td><strong>Yes</strong></td>
+<td>Message ID of the original request that generated this error</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>RFC 3339 String</td>
+<td><strong>Yes</strong></td>
+<td>Error occurrence timestamp in UTC (format: YYYY-MM-DDTHH:MM:SS.sssZ)</td>
+</tr>
+<tr>
+<td><code>priority</code></td>
+<td>Enum String</td>
+<td><strong>Yes</strong></td>
+<td>Error priority: <code>critical</code>, <code>high</code>, <code>medium</code>, <code>low</code> (based on severity mapping)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="routing-section">Routing Section</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>event_type</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Always "EPS_ERROR_RESPONSE" for error protocol messages</td>
+</tr>
+<tr>
+<td><code>event_category</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Always "error_handling" for error classification</td>
+</tr>
+<tr>
+<td><code>source_module</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Module that detected and generated the error</td>
+</tr>
+<tr>
+<td><code>target_module</code></td>
+<td>String</td>
+<td>No</td>
+<td>Intended recipient (usually "ErrorHandler_Core")</td>
+</tr>
+<tr>
+<td><code>original_source_module</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Module that sent the original message causing the error</td>
+</tr>
+<tr>
+<td><code>routing_tags</code></td>
+<td>Array[String]</td>
+<td><strong>Yes</strong></td>
+<td>Error classification tags for routing and filtering</td>
+</tr>
+</tbody>
+</table>
+<h3 id="error-payload-section">Error Payload Section</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>schema_version</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Version of the error payload structure (current: "1.0")</td>
+</tr>
+<tr>
+<td><code>content_type</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Always "application/json" for EPS messages</td>
+</tr>
+<tr>
+<td><code>size_bytes</code></td>
+<td>Integer</td>
+<td><strong>Yes</strong></td>
+<td>Total size of error_data and error_context sections</td>
+</tr>
+<tr>
+<td><code>error_data</code></td>
+<td>Object</td>
+<td><strong>Yes</strong></td>
+<td>JSON-RPC 2.0 compliant error structure</td>
+</tr>
+<tr>
+<td><code>error_context</code></td>
+<td>Object</td>
+<td><strong>Yes</strong></td>
+<td>RUNE-specific error context and recovery information</td>
+</tr>
+</tbody>
+</table>
+<h3 id="observability-section">Observability Section</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>trace_id</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Distributed tracing identifier linking to original request</td>
+</tr>
+<tr>
+<td><code>span_id</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Specific span identifier for this error event</td>
+</tr>
+<tr>
+<td><code>error_fingerprint</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Unique identifier for this error type for grouping/analysis</td>
+</tr>
+</tbody>
+</table>
+<h2 id="json-rpc-20-error-data-structure">JSON-RPC 2.0 Error Data Structure</h2>
+<p>The <code>error_data</code> section strictly follows JSON-RPC 2.0 specification:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>jsonrpc</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Always "2.0" for JSON-RPC version compliance</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>Object</td>
+<td><strong>Yes</strong></td>
+<td>JSON-RPC error object with code, message, data</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>ID from original request (or null if not parseable)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="json-rpc-error-object">JSON-RPC Error Object</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td>Integer</td>
+<td><strong>Yes</strong></td>
+<td>Numeric error code (see Standard Error Codes below)</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Human-readable error description</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>Object</td>
+<td>No</td>
+<td>Additional error details and context</td>
+</tr>
+</tbody>
+</table>
+<h3 id="json-rpc-error-data-object">JSON-RPC Error Data Object</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>field</code></td>
+<td>String</td>
+<td>No</td>
+<td>Specific field that caused the error</td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td>String</td>
+<td><strong>Yes</strong></td>
+<td>Detailed explanation of the error condition</td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td>RFC 3339 String</td>
+<td><strong>Yes</strong></td>
+<td>When the error occurred</td>
+</tr>
+<tr>
+<td><code>validation_errors</code></td>
+<td>Array[String]</td>
+<td>No</td>
+<td>List of specific validation failures</td>
+</tr>
+<tr>
+<td><code>original_value</code></td>
+<td>Any</td>
+<td>No</td>
+<td>Value that caused the error</td>
+</tr>
+<tr>
+<td><code>expected_format</code></td>
+<td>String</td>
+<td>No</td>
+<td>Description of expected value format</td>
+</tr>
+</tbody>
+</table>
+<h2 id="standard-error-codes">Standard Error Codes</h2>
+<h3 id="json-rpc-20-base-codes">JSON-RPC 2.0 Base Codes</h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-32700</td>
+<td>Parse error</td>
+<td>Invalid JSON was received by the parser</td>
+</tr>
+<tr>
+<td>-32600</td>
+<td>Invalid Request</td>
+<td>The JSON sent is not a valid Request object</td>
+</tr>
+<tr>
+<td>-32601</td>
+<td>Method not found</td>
+<td>The method does not exist / is not available</td>
+</tr>
+<tr>
+<td>-32602</td>
+<td>Invalid params</td>
+<td>Invalid method parameter(s)</td>
+</tr>
+<tr>
+<td>-32603</td>
+<td>Internal error</td>
+<td>Internal JSON-RPC error</td>
+</tr>
+<tr>
+<td>-32000 to -32099</td>
+<td>Server error</td>
+<td>Reserved for implementation-defined server-errors</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rune-custom-error-codes">RUNE Custom Error Codes</h3>
+<h4 id="communication-errors-32100-to-32199">Communication Errors (-32100 to -32199)</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-32100</td>
+<td>Module not found</td>
+<td>Target module is not registered with Orchestrator</td>
+</tr>
+<tr>
+<td>-32101</td>
+<td>Module unavailable</td>
+<td>Target module is registered but not responding</td>
+</tr>
+<tr>
+<td>-32102</td>
+<td>Routing failure</td>
+<td>Mediator cannot determine message destination</td>
+</tr>
+<tr>
+<td>-32103</td>
+<td>Message too large</td>
+<td>Message exceeds maximum size limits</td>
+</tr>
+<tr>
+<td>-32104</td>
+<td>Rate limit exceeded</td>
+<td>Sender has exceeded message rate limits</td>
+</tr>
+<tr>
+<td>-32105</td>
+<td>Protocol version mismatch</td>
+<td>Unsupported RCS/MRS/EPS version</td>
+</tr>
+</tbody>
+</table>
+<h4 id="validation-errors-32200-to-32299">Validation Errors (-32200 to -32299)</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-32200</td>
+<td>Schema validation failed</td>
+<td>Message doesn't conform to declared schema</td>
+</tr>
+<tr>
+<td>-32201</td>
+<td>Required field missing</td>
+<td>Mandatory field is absent from message</td>
+</tr>
+<tr>
+<td>-32202</td>
+<td>Field type mismatch</td>
+<td>Field contains wrong data type</td>
+</tr>
+<tr>
+<td>-32203</td>
+<td>Field value out of range</td>
+<td>Numeric or date field exceeds allowed range</td>
+</tr>
+<tr>
+<td>-32204</td>
+<td>Invalid field format</td>
+<td>Field format doesn't match specification</td>
+</tr>
+<tr>
+<td>-32205</td>
+<td>Checksum validation failed</td>
+<td>Message integrity check failed</td>
+</tr>
+</tbody>
+</table>
+<h4 id="security-errors-32300-to-32399">Security Errors (-32300 to -32399)</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-32300</td>
+<td>Authentication failed</td>
+<td>Invalid or missing authentication credentials</td>
+</tr>
+<tr>
+<td>-32301</td>
+<td>Authorization denied</td>
+<td>Insufficient permissions for requested operation</td>
+</tr>
+<tr>
+<td>-32302</td>
+<td>Signature verification failed</td>
+<td>Message signature is invalid or missing</td>
+</tr>
+<tr>
+<td>-32303</td>
+<td>Encryption error</td>
+<td>Message encryption/decryption failed</td>
+</tr>
+<tr>
+<td>-32304</td>
+<td>Access level insufficient</td>
+<td>Message requires higher access level</td>
+</tr>
+<tr>
+<td>-32305</td>
+<td>Token expired</td>
+<td>Authentication token has expired</td>
+</tr>
+</tbody>
+</table>
+<h4 id="system-errors-32400-to-32499">System Errors (-32400 to -32499)</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-32400</td>
+<td>Resource exhausted</td>
+<td>System resources (memory, disk, CPU) exhausted</td>
+</tr>
+<tr>
+<td>-32401</td>
+<td>Timeout exceeded</td>
+<td>Operation exceeded configured timeout</td>
+</tr>
+<tr>
+<td>-32402</td>
+<td>Service unavailable</td>
+<td>Required service is temporarily unavailable</td>
+</tr>
+<tr>
+<td>-32403</td>
+<td>Configuration error</td>
+<td>System configuration is invalid or missing</td>
+</tr>
+<tr>
+<td>-32404</td>
+<td>Database error</td>
+<td>Database operation failed</td>
+</tr>
+<tr>
+<td>-32405</td>
+<td>Network error</td>
+<td>Network connectivity or operation failed</td>
+</tr>
+</tbody>
+</table>
+<h4 id="business-logic-errors-32500-to-32599">Business Logic Errors (-32500 to -32599)</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-32500</td>
+<td>Business rule violation</td>
+<td>Operation violates business logic constraints</td>
+</tr>
+<tr>
+<td>-32501</td>
+<td>Workflow state invalid</td>
+<td>Operation not allowed in current workflow state</td>
+</tr>
+<tr>
+<td>-32502</td>
+<td>Data consistency error</td>
+<td>Operation would violate data consistency</td>
+</tr>
+<tr>
+<td>-32503</td>
+<td>Dependency unsatisfied</td>
+<td>Required dependency is not available</td>
+</tr>
+<tr>
+<td>-32504</td>
+<td>Operation not permitted</td>
+<td>Operation is not allowed for this entity</td>
+</tr>
+<tr>
+<td>-32505</td>
+<td>Quota exceeded</td>
+<td>User or module has exceeded usage quota</td>
+</tr>
+</tbody>
+</table>
+<h2 id="error-classification-and-severity">Error Classification and Severity</h2>
+<h3 id="error-classification-types">Error Classification Types</h3>
+<table>
+<thead>
+<tr>
+<th>Classification</th>
+<th>Description</th>
+<th>Typical Codes</th>
+<th>Recovery Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>validation_error</code></td>
+<td>Data format or schema violations</td>
+<td>-32200 to -32299</td>
+<td>Fix data and retry</td>
+</tr>
+<tr>
+<td><code>communication_error</code></td>
+<td>Message routing or delivery failures</td>
+<td>-32100 to -32199</td>
+<td>Check module status, retry</td>
+</tr>
+<tr>
+<td><code>security_error</code></td>
+<td>Authentication or authorization failures</td>
+<td>-32300 to -32399</td>
+<td>Update credentials, check permissions</td>
+</tr>
+<tr>
+<td><code>system_error</code></td>
+<td>Infrastructure or resource failures</td>
+<td>-32400 to -32499</td>
+<td>Check system health, scale resources</td>
+</tr>
+<tr>
+<td><code>business_error</code></td>
+<td>Application logic violations</td>
+<td>-32500 to -32599</td>
+<td>Review business rules, adjust request</td>
+</tr>
+<tr>
+<td><code>protocol_error</code></td>
+<td>JSON-RPC or EPS protocol violations</td>
+<td>-32700 to -32099</td>
+<td>Fix message format, check protocol version</td>
+</tr>
+</tbody>
+</table>
+<h3 id="severity-levels">Severity Levels</h3>
+<table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Priority</th>
+<th>Description</th>
+<th>Response Time</th>
+<th>Escalation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>critical</code></td>
+<td>critical</td>
+<td>System-wide failure, data loss risk</td>
+<td>Immediate</td>
+<td>Automatic</td>
+</tr>
+<tr>
+<td><code>high</code></td>
+<td>high</td>
+<td>Module failure, significant impact</td>
+<td>&lt; 5 minutes</td>
+<td>Automatic</td>
+</tr>
+<tr>
+<td><code>medium</code></td>
+<td>medium</td>
+<td>Feature degradation, partial failure</td>
+<td>&lt; 30 minutes</td>
+<td>Manual</td>
+</tr>
+<tr>
+<td><code>low</code></td>
+<td>low</td>
+<td>Minor issues, validation errors</td>
+<td>&lt; 2 hours</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="recovery-guidance">Recovery Guidance</h3>
+<table>
+<thead>
+<tr>
+<th>Error Context Field</th>
+<th>Purpose</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>recoverable</code></td>
+<td>Can the operation be retried?</td>
+<td><code>true</code>, <code>false</code></td>
+</tr>
+<tr>
+<td><code>retry_recommended</code></td>
+<td>Should retry be attempted?</td>
+<td><code>true</code>, <code>false</code></td>
+</tr>
+<tr>
+<td><code>escalation_required</code></td>
+<td>Does this need human intervention?</td>
+<td><code>true</code>, <code>false</code></td>
+</tr>
+<tr>
+<td><code>system_impact</code></td>
+<td>How much of the system is affected?</td>
+<td><code>single_request</code>, <code>module</code>, <code>multiple_modules</code>, <code>system_wide</code></td>
+</tr>
+<tr>
+<td><code>module_health_impact</code></td>
+<td>How does this affect module health?</td>
+<td><code>none</code>, <code>degraded</code>, <code>critical</code>, <code>failed</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="error-flow-architecture">Error Flow Architecture</h2>
+<pre class="mermaid"><code>flowchart TD
+    A[Module A] --&gt;|Send Message| M[Mediator]
+    M --&gt;|Validate Message| M
+    M --&gt;|Error Detected| EPS{Generate EPS Error}
+    EPS --&gt;|Route Error| EH[ErrorHandler Module]
+    M --&gt;|Valid Message| B[Module B]
+
+    EH --&gt;|Process Error| EH
+    EH --&gt;|Recovery Action| M
+    M --&gt;|Recovery Command| A
+    EH --&gt;|Alert if Critical| AL[Alerting Module]
+    EH --&gt;|Log Error| LM[Logging Module]
+
+    B --&gt;|Business Error| EPS2{Generate EPS Error}
+    EPS2 --&gt;|Route Error| EH
+
+    style M fill:#ff9999,stroke:#333,stroke-width:4px
+    style EPS fill:#ffcc99,stroke:#333,stroke-width:2px
+    style EPS2 fill:#ffcc99,stroke:#333,stroke-width:2px
+    style EH fill:#99ccff,stroke:#333,stroke-width:2px</code></pre>
+<h3 id="error-detection-points">Error Detection Points</h3>
+<ol>
+<li><strong>Mediator Validation</strong>: JSON parsing, schema validation, routing errors</li>
+<li><strong>Module Processing</strong>: Business logic errors, resource failures</li>
+<li><strong>System Level</strong>: Infrastructure failures, timeouts, security violations</li>
+</ol>
+<h3 id="error-routing-rules">Error Routing Rules</h3>
+<ol>
+<li><strong>All errors</strong> are formatted using EPS protocol</li>
+<li><strong>All errors</strong> are routed through Mediator (no direct communication)</li>
+<li><strong>ErrorHandler module</strong> is the primary error processor</li>
+<li><strong>Original sender</strong> receives error response via Mediator</li>
+<li><strong>Critical errors</strong> trigger automatic escalation workflows</li>
+</ol>
+<h2 id="recovery-and-escalation">Recovery and Escalation</h2>
+<h3 id="automatic-recovery-actions">Automatic Recovery Actions</h3>
+<table>
+<thead>
+<tr>
+<th>Error Type</th>
+<th>Recovery Action</th>
+<th>Trigger Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Module unavailable</code></td>
+<td>Health check, restart module</td>
+<td>Module not responding</td>
+</tr>
+<tr>
+<td><code>Rate limit exceeded</code></td>
+<td>Queue message, retry later</td>
+<td>Rate limit threshold reached</td>
+</tr>
+<tr>
+<td><code>Resource exhausted</code></td>
+<td>Scale resources, alert ops</td>
+<td>Memory/CPU/disk thresholds</td>
+</tr>
+<tr>
+<td><code>Authentication failed</code></td>
+<td>Refresh credentials</td>
+<td>Token expired</td>
+</tr>
+<tr>
+<td><code>Timeout exceeded</code></td>
+<td>Retry with backoff</td>
+<td>Network or processing timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="escalation-matrix">Escalation Matrix</h3>
+<table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Time Window</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Critical</strong></td>
+<td>Immediate</td>
+<td>Alert on-call, auto-recovery, emergency procedures</td>
+</tr>
+<tr>
+<td><strong>High</strong></td>
+<td>5 minutes</td>
+<td>Page team lead, initiate recovery, status update</td>
+</tr>
+<tr>
+<td><strong>Medium</strong></td>
+<td>30 minutes</td>
+<td>Email notification, schedule review, monitor</td>
+</tr>
+<tr>
+<td><strong>Low</strong></td>
+<td>2 hours</td>
+<td>Log for review, include in reports</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example-error-messages">Example Error Messages</h2>
+<h3 id="schema-validation-error">Schema Validation Error</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;message_metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;550e8400-e29b-41d4-a716-446655440001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;correlation_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;email-workflow-001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;parent_message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;550e8400-e29b-41d4-a716-446655440000&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T16:54:24.234Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;priority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;medium&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;routing&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EPS_ERROR_RESPONSE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;event_category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error_handling&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;source_module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mediator&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;target_module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ErrorHandler_Core&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;original_source_module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EmailSender&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;routing_tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;validation_error&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;schema_failure&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;error_payload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;content_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;size_bytes&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">387</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;error_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-32200</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Schema validation failed&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;payload.data.recipient&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Email address format is invalid&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T16:54:24.234Z&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;validation_errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;Missing @ symbol in email address&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Domain must contain at least one dot&quot;</span>
+<span class="w">          </span><span class="p">],</span>
+<span class="w">          </span><span class="nt">&quot;original_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user-invalid-email&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;expected_format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user@domain.com&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;550e8400-e29b-41d4-a716-446655440000&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;error_context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;error_classification&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;validation_error&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;medium&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;recoverable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;retry_recommended&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;escalation_required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;recovery_actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;Validate email format using regex or validation library&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Provide user with format example&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Implement client-side validation&quot;</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;related_errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">      </span><span class="nt">&quot;system_impact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;single_request&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;module_health_impact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;none&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;observability&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;trace_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;email-workflow-trace-001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;span_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;email-validation-error&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;error_fingerprint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;email_validation_format_001&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="module-not-found-error">Module Not Found Error</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;message_metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;550e8400-e29b-41d4-a716-446655440002&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;correlation_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data-processing-workflow-001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;parent_message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;550e8400-e29b-41d4-a716-446655440001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T16:54:24.345Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;priority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;high&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;routing&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EPS_ERROR_RESPONSE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;event_category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error_handling&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;source_module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mediator&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;target_module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ErrorHandler_Core&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;original_source_module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DataOrchestrator&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;routing_tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;communication_error&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;module_not_found&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;routing_failure&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;error_payload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;content_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;size_bytes&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">298</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;error_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-32100</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Module not found&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;routing.target_module&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Requested module &#39;AdvancedAnalytics&#39; is not registered&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T16:54:24.345Z&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;original_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AdvancedAnalytics&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;expected_format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Registered module name from Orchestrator registry&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;550e8400-e29b-41d4-a716-446655440001&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;error_context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;error_classification&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;communication_error&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;high&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;recoverable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;retry_recommended&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;escalation_required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;recovery_actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;Check module registration status with Orchestrator&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Verify module is running and healthy&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Use alternative module if available&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Trigger module startup if configured&quot;</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;related_errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">      </span><span class="nt">&quot;system_impact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;multiple_modules&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;module_health_impact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;degraded&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;observability&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;trace_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data-processing-trace-001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;span_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;module-routing-error&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;error_fingerprint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;module_not_found_advanced_analytics_001&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="critical-system-error">Critical System Error</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;message_metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;550e8400-e29b-41d4-a716-446655440003&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;correlation_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;system-monitor-001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;parent_message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;550e8400-e29b-41d4-a716-446655440002&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T16:54:24.456Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;priority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;critical&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;routing&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EPS_ERROR_RESPONSE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;event_category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error_handling&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;source_module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SystemMonitor&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;target_module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ErrorHandler_Core&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;original_source_module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DataProcessor&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;routing_tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;system_error&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;resource_exhausted&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;critical_failure&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;error_payload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;content_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;size_bytes&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">445</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;error_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-32400</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Resource exhausted&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;system.memory&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Available memory below critical threshold&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T16:54:24.456Z&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;original_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;95% memory usage&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;expected_format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Memory usage below 85%&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;550e8400-e29b-41d4-a716-446655440002&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;error_context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;error_classification&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;system_error&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;critical&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;recoverable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;retry_recommended&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;escalation_required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;recovery_actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;Stop non-critical modules immediately&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Clear system caches&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Scale up infrastructure resources&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Alert operations team for immediate intervention&quot;</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;related_errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">      </span><span class="nt">&quot;system_impact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;system_wide&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;module_health_impact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;critical&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;observability&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;trace_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;system-critical-trace-001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;span_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;memory-exhaustion-error&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;error_fingerprint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;system_memory_critical_001&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="error-handler-module-integration">Error Handler Module Integration</h2>
+<h3 id="errorhandler-module-registration-mrs">ErrorHandler Module Registration (MRS)</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;module_identity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;module_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ErrorHandler_Core&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CentralizedErrorProcessor&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error_management_service&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;module_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Centralized error processing, recovery management, and escalation handling&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;registration_timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T16:54:24.567Z&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;capability_declaration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;provides_events&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;ERROR_PROCESSED&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;MODULE_RECOVERY_INITIATED&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;ERROR_ALERT_GENERATED&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;ERROR_STATISTICS_UPDATED&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;consumes_events&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;EPS_ERROR_RESPONSE&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;technical_requirements&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;supported_protocols&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;rcs_v2&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;resource_requirements&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;min_memory_mb&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;max_memory_mb&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2048</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;cpu_cores&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;instance_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="errorhandler-processing-workflow">ErrorHandler Processing Workflow</h3>
+<pre class="mermaid"><code>flowchart TD
+    E[EPS Error Received] --&gt; C[Classify Error]
+    C --&gt; S[Determine Severity]
+    S --&gt; R{Recoverable?}
+
+    R --&gt;|Yes| RA[Execute Recovery Actions]
+    R --&gt;|No| ES[Escalate Immediately]
+
+    RA --&gt; RT{Retry Recommended?}
+    RT --&gt;|Yes| SC[Schedule Retry]
+    RT --&gt;|No| Log[Log Error]
+
+    SC --&gt; Log
+    ES --&gt; Log
+    Log --&gt; A{Alert Required?}
+
+    A --&gt;|Yes| AL[Send Alert]
+    A --&gt;|No| ST[Update Statistics]
+
+    AL --&gt; ST
+    ST --&gt; End[Complete Processing]</code></pre>
+<h2 id="minimal-required-error-message">Minimal Required Error Message</h2>
+<p>The absolute minimum valid EPS error message:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;message_metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;550e8400-e29b-41d4-a716-446655440004&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;correlation_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;parent_message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T16:54:24.678Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;priority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;medium&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;routing&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EPS_ERROR_RESPONSE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;event_category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error_handling&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;source_module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mediator&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;original_source_module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;routing_tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;parse_error&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;error_payload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;content_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;size_bytes&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">156</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;error_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-32700</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Parse error&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid JSON received&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-07-31T16:54:24.678Z&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;error_context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;error_classification&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;protocol_error&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;medium&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;recoverable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;retry_recommended&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;escalation_required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;recovery_actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Fix JSON format and resend&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;system_impact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;single_request&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;module_health_impact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;none&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;observability&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;trace_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;parse-error-trace-001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;span_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;json-parse-failure&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;error_fingerprint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;json_parse_error_001&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="implementation-guidelines">Implementation Guidelines</h2>
+<h3 id="module-error-response-template">Module Error Response Template</h3>
+<div class="highlight"><pre><span></span><code><span class="k">abstract</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">RUNEModule</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">protected</span><span class="w"> </span><span class="nx">generateEPSError</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">originalMessage</span><span class="o">:</span><span class="w"> </span><span class="kt">RCSMessage</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">errorCode</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">errorMessage</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">errorDetails</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">  </span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">EPSMessage</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">message_metadata</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">version</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">message_id</span><span class="o">:</span><span class="w"> </span><span class="kt">generateUUID</span><span class="p">(),</span>
+<span class="w">        </span><span class="nx">correlation_id</span><span class="o">:</span>
+<span class="w">          </span><span class="kt">originalMessage?.message_metadata?.correlation_id</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">parent_message_id</span><span class="o">:</span>
+<span class="w">          </span><span class="kt">originalMessage?.message_metadata?.message_id</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">created_at</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">(),</span>
+<span class="w">        </span><span class="nx">priority</span><span class="o">:</span><span class="w"> </span><span class="kt">this.determinePriority</span><span class="p">(</span><span class="nx">errorCode</span><span class="p">),</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nx">routing</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">event_type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;EPS_ERROR_RESPONSE&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">event_category</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;error_handling&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">source_module</span><span class="o">:</span><span class="w"> </span><span class="kt">this.moduleName</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">target_module</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ErrorHandler_Core&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">original_source_module</span><span class="o">:</span>
+<span class="w">          </span><span class="kt">originalMessage?.routing?.source_module</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">routing_tags</span><span class="o">:</span><span class="w"> </span><span class="kt">this.generateErrorTags</span><span class="p">(</span><span class="nx">errorCode</span><span class="p">,</span><span class="w"> </span><span class="nx">errorDetails</span><span class="p">),</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nx">error_payload</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">schema_version</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">content_type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">size_bytes</span><span class="o">:</span><span class="w"> </span><span class="kt">0</span><span class="p">,</span><span class="w"> </span><span class="c1">// Calculate after serialization</span>
+<span class="w">        </span><span class="nx">error_data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">jsonrpc</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">code</span><span class="o">:</span><span class="w"> </span><span class="kt">errorCode</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">errorMessage</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">reason</span><span class="o">:</span><span class="w"> </span><span class="kt">errorDetails.reason</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">errorMessage</span><span class="p">,</span>
+<span class="w">              </span><span class="nx">timestamp</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">(),</span>
+<span class="w">              </span><span class="p">...</span><span class="nx">errorDetails</span><span class="p">,</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">originalMessage?.message_metadata?.message_id</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">error_context</span><span class="o">:</span><span class="w"> </span><span class="kt">this.buildErrorContext</span><span class="p">(</span><span class="nx">errorCode</span><span class="p">,</span><span class="w"> </span><span class="nx">errorDetails</span><span class="p">),</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nx">observability</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">trace_id</span><span class="o">:</span><span class="w"> </span><span class="kt">originalMessage?.observability?.trace_id</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">generateTraceId</span><span class="p">(),</span>
+<span class="w">        </span><span class="nx">span_id</span><span class="o">:</span><span class="w"> </span><span class="kt">generateSpanId</span><span class="p">(),</span>
+<span class="w">        </span><span class="nx">error_fingerprint</span><span class="o">:</span><span class="w"> </span><span class="kt">this.generateErrorFingerprint</span><span class="p">(</span>
+<span class="w">          </span><span class="nx">errorCode</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">errorDetails</span><span class="p">,</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="error-classification-logic">Error Classification Logic</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nx">ErrorClassifier</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="nx">classifyError</span><span class="p">(</span><span class="nx">errorCode</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">ErrorContext</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">errorCode</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">-</span><span class="mf">32099</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">errorCode</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="o">-</span><span class="mf">32000</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">classification</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;protocol_error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">severity</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;medium&quot;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">errorCode</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">-</span><span class="mf">32199</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">errorCode</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="o">-</span><span class="mf">32100</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">classification</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;communication_error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">severity</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;high&quot;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">errorCode</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">-</span><span class="mf">32299</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">errorCode</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="o">-</span><span class="mf">32200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">classification</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;validation_error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">severity</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;medium&quot;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">errorCode</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">-</span><span class="mf">32399</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">errorCode</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="o">-</span><span class="mf">32300</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">classification</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;security_error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">severity</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;high&quot;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">errorCode</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">-</span><span class="mf">32499</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">errorCode</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="o">-</span><span class="mf">32400</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">classification</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;system_error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">severity</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;critical&quot;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">errorCode</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">-</span><span class="mf">32599</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">errorCode</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="o">-</span><span class="mf">32500</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">classification</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;business_error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">severity</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;medium&quot;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">classification</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;unknown_error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">severity</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;medium&quot;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="safety-mechanisms">Safety Mechanisms</h2>
+<h3 id="infinite-loop-prevention">Infinite Loop Prevention</h3>
+<ol>
+<li><strong>ErrorHandler Isolation</strong>: ErrorHandler module cannot process its own errors</li>
+<li><strong>Circuit Breaker</strong>: Maximum error processing rate per time window</li>
+<li><strong>Fallback Logging</strong>: Critical errors logged directly if ErrorHandler unavailable</li>
+<li><strong>Error Budget</strong>: Maximum errors per module before automatic intervention</li>
+</ol>
+<h3 id="error-processing-limits">Error Processing Limits</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;error_safety_config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;max_errors_per_minute&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;max_errors_per_module_per_minute&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;circuit_breaker_threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;circuit_breaker_timeout_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fallback_logging_enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;error_handler_isolation&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="critical-error-bypass">Critical Error Bypass</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nx">Mediator</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">handleCriticalError</span><span class="p">(</span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="kt">Error</span><span class="p">,</span><span class="w"> </span><span class="nx">sourceModule</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// SAFETY: Never route ErrorHandler&#39;s own errors back to ErrorHandler</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">sourceModule</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;ErrorHandler_Core&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">logCriticalErrorDirectly</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">triggerEmergencyProcedures</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// SAFETY: Circuit breaker check</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">errorRateExceeded</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">logCriticalErrorDirectly</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">triggerCircuitBreaker</span><span class="p">();</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Normal error processing</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">routeErrorToHandler</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span><span class="w"> </span><span class="nx">sourceModule</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="implementation-notes">Implementation Notes</h2>
+<ol>
+<li><strong>Timestamps</strong>: All timestamps must be in RFC 3339 format with UTC timezone</li>
+<li><strong>UUIDs</strong>: Use UUID v4 for all identifier fields</li>
+<li><strong>Error Fingerprinting</strong>: Create consistent fingerprints for error grouping and analysis</li>
+<li><strong>Size Calculation</strong>: <code>size_bytes</code> must be calculated after JSON serialization</li>
+<li><strong>Priority Mapping</strong>: Error code ranges automatically determine message priority</li>
+<li><strong>Trace Continuity</strong>: Always preserve trace_id from original request for observability</li>
+<li><strong>Recovery Actions</strong>: Provide specific, actionable recovery recommendations</li>
+<li><strong>Classification Consistency</strong>: Use standard error classification types for proper routing</li>
+</ol>
+<p>This Error Protocol Specification ensures robust, consistent error handling across the RUNE platform while maintaining architectural principles of modularity, observability, and system stability.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025-2026 Richard Majewski. Licensed under <a href="/legal/LICENSE/">MPL-2.0</a>.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../assets/javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="540" viewBox="0 0 1200 540" role="img" aria-label="RUNE Module Registration Flow">
+  <title>RUNE Module Registration Flow</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#111"/>
+    </marker>
+    <style>
+      .box { fill: #fff; stroke: #111; stroke-width: 2; rx: 12; ry: 12; }
+      .label { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+                font-size: 16px; fill: #111; }
+      .title { font-size: 20px; font-weight: 700; }
+      .small { font-size: 14px; }
+      .line { stroke: #111; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .dash { stroke-dasharray: 6 6; }
+      .note { font-size: 13px; fill: #111; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1200" height="540" fill="#fff"/>
+<text class="label title" x="24" y="36">RUNE Module Registration Flow (MRS)</text>
+<text class="label note" x="24" y="60">Modules register; LOM maintains registry; LMM consults it for routing.</text>
+<rect class="box" x="70" y="140" width="220" height="80"/>
+<text class="label" x="180.0" y="174.0" text-anchor="middle">Module A</text>
+<text class="label" x="180.0" y="194.0" text-anchor="middle">register()</text>
+<rect class="box" x="70" y="260" width="220" height="80"/>
+<text class="label" x="180.0" y="294.0" text-anchor="middle">Module B</text>
+<text class="label" x="180.0" y="314.0" text-anchor="middle">register()</text>
+<rect class="box" x="70" y="380" width="220" height="80"/>
+<text class="label" x="180.0" y="414.0" text-anchor="middle">Plugin Catalog</text>
+<text class="label" x="180.0" y="434.0" text-anchor="middle">actions</text>
+<rect class="box" x="410" y="220" width="260" height="110"/>
+<text class="label" x="540.0" y="269.0" text-anchor="middle">LOM</text>
+<text class="label" x="540.0" y="289.0" text-anchor="middle">Registry owner</text>
+<rect class="box" x="780" y="220" width="320" height="110"/>
+<text class="label" x="940.0" y="269.0" text-anchor="middle">LMM</text>
+<text class="label" x="940.0" y="289.0" text-anchor="middle">Routing + mediation</text>
+<path class="line" d="M 290 180 L 410 260"/>
+<text class="label small" x="350.0" y="212.0" text-anchor="middle">MRS: register_module</text>
+<path class="line" d="M 290 300 L 410 275"/>
+<text class="label small" x="350.0" y="279.5" text-anchor="middle">MRS: register_module</text>
+<path class="line" d="M 290 420 L 410 300"/>
+<text class="label small" x="350.0" y="352.0" text-anchor="middle">MRS: register_actions</text>
+<path class="line" d="M 670 275 L 780 275"/>
+<text class="label small" x="725.0" y="267.0" text-anchor="middle">registry snapshot / query</text>
+<path class="line dash" d="M 780 330 L 670 330"/>
+<text class="label small" x="725.0" y="322.0" text-anchor="middle">route decision</text>
+<rect class="box" x="410" y="360" width="690" height="90"/>
+<text class="label small" x="755" y="392" text-anchor="middle">MVP option: registry may be a static file loaded by LOM,</text>
+<text class="label small" x="755" y="414" text-anchor="middle">but MRS message shapes remain the contract for forward compatibility.</text>
+
+</svg>

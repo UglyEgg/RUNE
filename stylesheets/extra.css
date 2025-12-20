@@ -1,0 +1,44 @@
+/* Vertically center header contents (logo + site title) */
+.md-header__inner {
+  align-items: center;
+}
+
+/* Ensure the title block itself is centered and not baseline-aligned */
+.md-header__title {
+  transform: translateY(4px);
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+/* Keep the visible title text centered */
+.md-header__title .md-ellipsis,
+.md-header__title .md-header__topic {
+  display: flex;
+  align-items: center;
+  line-height: 1.2;
+}
+
+/* Larger header logo */
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 2.4rem; /* adjust: 2.0–3.0rem */
+  width: auto;
+}
+
+/* Header site title (project name) */
+.md-header__title {
+  font-size: 1.25rem; /* try 1.1–1.5rem */
+  line-height: 1.2;
+}
+
+/* Don't make mobile look silly */
+@media (max-width: 600px) {
+  .md-header__title {
+    font-size: 1.05rem;
+  }
+  .md-content__inner h1 {
+    font-size: 1.8rem;
+  }
+}

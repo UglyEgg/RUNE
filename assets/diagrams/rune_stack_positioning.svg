@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-label="Where RUNE fits in the ops automation stack">
+  <title>Where RUNE fits in the ops automation stack</title>
+  <defs>
+    <style>
+      .box { fill: #fff; stroke: #111; stroke-width: 2; rx: 14; ry: 14; }
+      .box2 { fill: #fff; stroke: #111; stroke-width: 2; stroke-dasharray: 8 6; rx: 14; ry: 14; }
+      .label {
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+        font-size: 16px; fill: #111;
+      }
+      .title { font-size: 22px; font-weight: 700; }
+      .small { font-size: 13px; }
+      .tiny { font-size: 12px; }
+      .line { stroke: #111; stroke-width: 2; fill: none; }
+      .arrow { marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#111"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="760" fill="#fff"/>
+
+  <text class="label title" x="24" y="40">Where RUNE Fits in the Ops / Automation Stack</text>
+  <text class="label small" x="24" y="66">Positioning: incident-driven remediation orchestration that complements CM/automation tools (Ansible, Salt, etc.)</text>
+
+  <rect class="box" x="90" y="110" width="1020" height="90"/>
+  <text class="label" x="600" y="150" text-anchor="middle">Signals &amp; Triggers</text>
+  <text class="label small" x="600" y="175" text-anchor="middle">Monitoring • SIEM • SOAR • ITSM • On-call • Runbook triggers</text>
+
+  <rect class="box" x="180" y="240" width="840" height="120"/>
+  <text class="label" x="600" y="280" text-anchor="middle">RUNE</text>
+  <text class="label small" x="600" y="304" text-anchor="middle">Mediated remediation orchestration (LOM/LMM) • Structured outputs • Audit-friendly execution</text>
+  <text class="label small" x="600" y="328" text-anchor="middle">Runs actions (plugins) locally or remotely via SSH/SSM; can also invoke other automation tools</text>
+
+  <rect class="box2" x="120" y="400" width="460" height="140"/>
+  <text class="label" x="350" y="438" text-anchor="middle">Configuration / Automation Tools</text>
+  <text class="label small" x="350" y="462" text-anchor="middle">Ansible • Salt • Puppet • Chef • Terraform (adjacent)</text>
+  <text class="label tiny" x="350" y="490" text-anchor="middle">Best for: desired-state config, fleet management, provisioning</text>
+  <text class="label tiny" x="350" y="512" text-anchor="middle">RUNE can call these, but does not replace them</text>
+
+  <rect class="box" x="620" y="400" width="490" height="140"/>
+  <text class="label" x="865" y="438" text-anchor="middle">Action Plugins</text>
+  <text class="label small" x="865" y="462" text-anchor="middle">Bash / Python scripts with strict I/O contract</text>
+  <text class="label tiny" x="865" y="490" text-anchor="middle">Best for: last-mile fixes, targeted recovery, operational runbooks</text>
+  <text class="label tiny" x="865" y="512" text-anchor="middle">Examples: restart service, free disk, rotate cert, unblock firewall</text>
+
+  <rect class="box" x="180" y="570" width="840" height="80"/>
+  <text class="label" x="600" y="615" text-anchor="middle">Execution Transport</text>
+  <text class="label small" x="600" y="638" text-anchor="middle">SSH • AWS SSM (and similar mechanisms)</text>
+
+  <rect class="box" x="90" y="670" width="1020" height="70"/>
+  <text class="label" x="600" y="712" text-anchor="middle">Targets</text>
+  <text class="label small" x="600" y="734" text-anchor="middle">Linux hosts • instances • containers • customer-managed environments</text>
+
+  <path class="line arrow" d="M 600 200 L 600 240"/>
+  <path class="line arrow" d="M 600 360 L 350 400"/>
+  <path class="line arrow" d="M 600 360 L 865 400"/>
+  <path class="line arrow" d="M 865 540 L 600 570"/>
+  <path class="line arrow" d="M 600 650 L 600 670"/>
+
+  <rect class="box2" x="90" y="240" width="70" height="410"/>
+  <text class="label tiny" x="125" y="270" text-anchor="middle" transform="rotate(-90 125 270)">Incident</text>
+  <text class="label tiny" x="125" y="335" text-anchor="middle" transform="rotate(-90 125 335)">Response</text>
+  <text class="label tiny" x="125" y="410" text-anchor="middle" transform="rotate(-90 125 410)">Loop</text>
+</svg>

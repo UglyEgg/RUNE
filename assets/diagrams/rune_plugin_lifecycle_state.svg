@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="RUNE Plugin Lifecycle">
+  <title>RUNE Plugin Lifecycle</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#111"/>
+    </marker>
+    <style>
+      .box { fill: #fff; stroke: #111; stroke-width: 2; rx: 12; ry: 12; }
+      .label { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+                font-size: 16px; fill: #111; }
+      .title { font-size: 20px; font-weight: 700; }
+      .small { font-size: 14px; }
+      .line { stroke: #111; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .dash { stroke-dasharray: 6 6; }
+      .note { font-size: 13px; fill: #111; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1200" height="520" fill="#fff"/>
+<text class="label title" x="24" y="36">RUNE Plugin Lifecycle (Operator View)</text>
+<text class="label note" x="24" y="60">State progression for an action plugin as managed by LOM/LMM.</text>
+<rect class="box" x="80" y="170" width="190" height="70"/>
+<text class="label" x="175.0" y="209.0" text-anchor="middle">Discovered</text>
+<rect class="box" x="310" y="170" width="190" height="70"/>
+<text class="label" x="405.0" y="209.0" text-anchor="middle">Validated</text>
+<rect class="box" x="540" y="170" width="190" height="70"/>
+<text class="label" x="635.0" y="209.0" text-anchor="middle">Runnable</text>
+<rect class="box" x="770" y="170" width="190" height="70"/>
+<text class="label" x="865.0" y="209.0" text-anchor="middle">Executing</text>
+<rect class="box" x="1000" y="120" width="190" height="70"/>
+<text class="label" x="1095.0" y="159.0" text-anchor="middle">Succeeded</text>
+<rect class="box" x="1000" y="260" width="190" height="70"/>
+<text class="label" x="1095.0" y="299.0" text-anchor="middle">Failed</text>
+<rect class="box" x="770" y="340" width="190" height="70"/>
+<text class="label" x="865.0" y="369.0" text-anchor="middle">Quarantined</text>
+<text class="label" x="865.0" y="389.0" text-anchor="middle">(optional)</text>
+<path class="line" d="M 270 205 L 310 205"/>
+<text class="label small" x="290.0" y="197.0" text-anchor="middle">catalog load</text>
+<path class="line" d="M 500 205 L 540 205"/>
+<text class="label small" x="520.0" y="197.0" text-anchor="middle">policy ok</text>
+<path class="line" d="M 730 205 L 770 205"/>
+<text class="label small" x="750.0" y="197.0" text-anchor="middle">execute</text>
+<path class="line" d="M 960 205 L 1000 155"/>
+<text class="label small" x="980.0" y="172.0" text-anchor="middle">exit=0</text>
+<path class="line" d="M 960 235 L 1000 295"/>
+<text class="label small" x="980.0" y="257.0" text-anchor="middle">exit≠0</text>
+<path class="line dash" d="M 1095 295 L 865 375"/>
+<text class="label small" x="980.0" y="327.0" text-anchor="middle">repeated failure</text>
+<path class="line dash" d="M 865 340 L 865 240"/>
+<text class="label small" x="865.0" y="282.0" text-anchor="middle">manual restore</text>
+<rect class="box" x="80" y="400" width="1110" height="70"/>
+<text class="label small" x="635" y="430" text-anchor="middle">Quarantine is optional, but corporate IT readers expect guardrails: rate limits, lockouts, and audit trails.</text>
+
+</svg>
