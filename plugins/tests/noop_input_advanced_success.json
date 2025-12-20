@@ -1,0 +1,23 @@
+{
+  "message_metadata": {
+    "version": "1.0",
+    "message_id": "mid-noop-adv-001",
+    "correlation_id": "corr-noop-002",
+    "created_at": "2025-12-20T12:01:00.000Z"
+  },
+  "payload": {
+    "input_parameters": {
+      "mode": "advanced",
+      "fail": "false",
+      "example": "hello"
+    },
+    "context": {
+      "node": "local",
+      "requested_by": "tester"
+    }
+  },
+  "observability": {
+    "trace_id": "trace-noop-002",
+    "span_id": "span-noop-002"
+  }
+}
